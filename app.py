@@ -680,6 +680,11 @@ def health():
     return jsonify({"ok": True, "name": STAN_NAME})
 
 
+@app.route("/mascot")
+def mascot():
+    return send_from_directory(BASE_DIR, "stan-mascot.jpeg")
+
+
 @app.route("/api/settings", methods=["GET", "POST"])
 def api_settings():
     if request.method == "GET":

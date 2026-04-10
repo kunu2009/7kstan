@@ -76,23 +76,174 @@
 
     main {
       width: 100%;
-      max-width: 880px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 12px;
+      padding: 16px;
       flex: 1;
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 1fr;
+    }
+
+    .hero-section {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .hero-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background:
+        radial-gradient(900px 360px at 12% 0%, rgba(160, 82, 255, 0.24), transparent 45%),
+        radial-gradient(640px 420px at 100% 10%, rgba(123, 216, 255, 0.14), transparent 40%),
+        linear-gradient(180deg, rgba(23,14,46,0.92), rgba(12,16,26,0.96));
+      box-shadow: 0 24px 60px rgba(0,0,0,0.34);
+      padding: 16px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(179, 132, 255, 0.35);
+      background: rgba(141, 84, 255, 0.12);
+      color: #e7d8ff;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      margin: 14px 0 0;
+      font-size: clamp(1.9rem, 4vw, 3.1rem);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-copy {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.55;
+      max-width: 58ch;
+    }
+
+    .mascot-frame {
+      position: relative;
+      min-height: 250px;
+      margin-top: 14px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        radial-gradient(200px 120px at 50% 48%, rgba(255,255,255,0.12), transparent 60%),
+        radial-gradient(520px 220px at 50% 10%, rgba(126, 68, 255, 0.34), transparent 56%),
+        linear-gradient(180deg, rgba(16, 8, 31, 0.86), rgba(9, 12, 20, 0.95));
+      overflow: hidden;
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mascot-image {
+      width: min(100%, 320px);
+      max-height: 320px;
+      object-fit: contain;
+      filter: drop-shadow(0 24px 30px rgba(0,0,0,0.42));
+      transform: translateY(4px);
+      position: relative;
+      z-index: 2;
+    }
+
+    .orbit {
+      position: absolute;
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .orbit-a {
+      width: 360px;
+      height: 360px;
+      top: -52px;
+      right: -80px;
+    }
+
+    .orbit-b {
+      width: 470px;
+      height: 470px;
+      bottom: -130px;
+      left: -95px;
+    }
+
+    .quick-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .quick-chip {
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      padding: 10px 14px;
+      text-decoration: none;
+      font-size: 0.84rem;
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .quick-chip:hover {
+      transform: translateY(-1px);
+      border-color: rgba(123,216,255,0.42);
+      background: rgba(123,216,255,0.08);
+    }
+
+    .quick-chip.primary {
+      border-color: rgba(179, 132, 255, 0.40);
+      background: linear-gradient(180deg, rgba(156, 88, 255, 0.30), rgba(91, 36, 188, 0.22));
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 12px;
+    }
+
+    .feature-stack {
+      display: grid;
       gap: 10px;
+    }
+
+    .feature-item {
+      padding: 12px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+      color: #edf3fb;
+      line-height: 1.45;
+      font-size: 0.88rem;
     }
 
     #chat {
       flex: 1;
       border: 1px solid rgba(255,255,255,0.08);
       background: linear-gradient(180deg, rgba(18,24,35,0.96), rgba(15,20,30,0.96));
-      border-radius: 14px;
-      padding: 12px;
+      border-radius: 26px;
+      padding: 14px;
       overflow-y: auto;
       min-height: 52vh;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.24);
     }
 
     .msg {
@@ -204,11 +355,12 @@
       border: 1px solid rgba(123,216,255,0.35);
       background: linear-gradient(180deg, #18314a, #13273d);
       color: #dcf4ff;
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 0 16px;
-      min-height: 44px;
+      min-height: 46px;
       font-weight: 600;
       cursor: pointer;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
     }
 
     button:disabled {
@@ -224,10 +376,13 @@
 
     @media (max-width: 600px) {
       .msg { max-width: 94%; }
-      #chat { min-height: 58vh; }
+      .hero-section { grid-template-columns: 1fr; }
+      .hero-title { font-size: 2rem; }
+      .mascot-frame { min-height: 220px; }
+      #chat { min-height: 56vh; }
       form { grid-template-columns: 1fr 1fr; }
       #msg-input { grid-column: 1 / -1; }
-      button { width: 100%; }
+      #chat-form button { width: 100%; }
     }
   </style>
 </head>
@@ -243,6 +398,55 @@
   </header>
 
   <main>
+    <section class="hero-section">
+      <div class="hero-card">
+        <span class="eyebrow">Personal AI buddy</span>
+        <h2 class="hero-title">How may I help you today?</h2>
+        <p class="hero-copy">Stan is built for phone-first use: chat, voice, todo, study, and API tools in one fast workspace.</p>
+        <div class="mascot-frame">
+          <div class="orbit orbit-a"></div>
+          <div class="orbit orbit-b"></div>
+          <img src="/mascot" alt="Stan mascot" class="mascot-image" />
+        </div>
+        <div class="quick-grid">
+          <button class="quick-chip primary" type="button" data-quick="/help">See commands</button>
+          <button class="quick-chip" type="button" data-quick="/study help">Study mode</button>
+          <button class="quick-chip" type="button" data-quick="/voice">Voice status</button>
+          <button class="quick-chip" type="button" data-fill="/todo add ">Quick todo</button>
+          <a class="quick-chip" href="/toolbox">Open API Hub</a>
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <section class="settings-panel">
+          <div class="head-row" style="justify-content: space-between;">
+            <div>
+              <div class="title" style="font-size:0.92rem;">Gemini Settings</div>
+              <div class="settings-note">Stored locally on this device. No env file needed.</div>
+            </div>
+            <span id="gemini-status" class="status-pill">Gemini: checking...</span>
+          </div>
+          <div class="settings-row">
+            <input id="gemini-key-input" type="password" placeholder="Paste Gemini API key here" autocomplete="off" />
+            <button id="gemini-save-btn" type="button">Save Key</button>
+          </div>
+          <div class="settings-actions">
+            <button id="gemini-clear-btn" class="secondary" type="button">Clear Key</button>
+            <button id="gemini-refresh-btn" class="secondary" type="button">Refresh Status</button>
+          </div>
+        </section>
+
+        <section class="settings-panel">
+          <div class="title" style="font-size:0.92rem;">What Stan does</div>
+          <div class="feature-stack">
+            <div class="feature-item">Chat and local commands are always available, even when the network is weak.</div>
+            <div class="feature-item">Mic and TTS work in Chrome on Android for quick hands-free use.</div>
+            <div class="feature-item">The API Hub stays separate so tools remain organized instead of mixing into chat.</div>
+          </div>
+        </section>
+      </div>
+    </section>
+
     <section id="chat" aria-live="polite"></section>
 
     <form id="chat-form">
@@ -260,24 +464,6 @@
       <span id="voice-status" class="status-pill">Voice: checking support...</span>
       <span id="net-status" class="status-pill">Network: idle</span>
     </div>
-
-    <section class="settings-panel">
-      <div class="head-row" style="justify-content: space-between;">
-        <div>
-          <div class="title" style="font-size:0.92rem;">Gemini Settings</div>
-          <div class="settings-note">Stored on this device in Stan&apos;s local data folder.</div>
-        </div>
-        <span id="gemini-status" class="status-pill">Gemini: checking...</span>
-      </div>
-      <div class="settings-row">
-        <input id="gemini-key-input" type="password" placeholder="Paste Gemini API key here" autocomplete="off" />
-        <button id="gemini-save-btn" type="button">Save Key</button>
-      </div>
-      <div class="settings-actions">
-        <button id="gemini-clear-btn" class="secondary" type="button">Clear Key</button>
-        <button id="gemini-refresh-btn" class="secondary" type="button">Refresh Status</button>
-      </div>
-    </section>
   </main>
 
   <script>
@@ -388,6 +574,20 @@
       }
     }
 
+    function handleQuickAction(button) {
+      const quickMessage = button.getAttribute("data-quick") || "";
+      const fillValue = button.getAttribute("data-fill") || "";
+      if (fillValue) {
+        input.value = fillValue;
+        input.focus();
+        return;
+      }
+      if (quickMessage) {
+        input.value = "";
+        sendMessage(quickMessage);
+      }
+    }
+
     async function loadGeminiStatus() {
       try {
         const response = await fetch("/api/settings");
@@ -473,6 +673,12 @@
     });
 
     geminiRefreshBtn.addEventListener("click", loadGeminiStatus);
+
+    document.body.addEventListener("click", (e) => {
+      const quick = e.target.closest("[data-quick], [data-fill]");
+      if (!quick) return;
+      handleQuickAction(quick);
+    });
 
     if (recognitionSupported) {
       voiceStatus.textContent = ttsSupported
