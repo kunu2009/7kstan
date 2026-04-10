@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.venv/
+data/api_catalog_validation.json
+data/api_catalog_keep_remove.md
