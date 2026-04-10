@@ -18,8 +18,8 @@ DATA_DIR = BASE_DIR / "data"
 TODO_FILE = DATA_DIR / "todos.json"
 STUDY_FILE = DATA_DIR / "study_state.json"
 API_CATALOG_FILE = DATA_DIR / "api_catalog.json"
+SETTINGS_FILE = DATA_DIR / "settings.json"
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "").strip()
 STAN_NAME = os.getenv("STAN_NAME", "Stan").strip() or "Stan"
 GEMINI_MODEL = "gemini-1.5-flash"
 
@@ -63,6 +63,39 @@ def ensure_data_files() -> None:
         )
     if not API_CATALOG_FILE.exists():
         API_CATALOG_FILE.write_text("[]\n", encoding="utf-8")
+    if not SETTINGS_FILE.exists():
+        SETTINGS_FILE.write_text(json.dumps({"gemini_api_key": ""}, indent=2) + "\n", encoding="utf-8")
+
+
+def load_settings() -> dict:
+    ensure_data_files()
+    defaults = {"gemini_api_key": ""}
+    try:
+        raw = json.loads(SETTINGS_FILE.read_text(encoding="utf-8"))
+        if not isinstance(raw, dict):
+            return defaults
+        merged = defaults | raw
+        merged["gemini_api_key"] = str(merged.get("gemini_api_key", "")).strip()
+        return merged
+    except (json.JSONDecodeError, OSError):
+        return defaults
+
+
+def save_settings(settings: dict) -> None:
+    ensure_data_files()
+    SETTINGS_FILE.write_text(json.dumps(settings, indent=2) + "\n", encoding="utf-8")
+
+
+def get_gemini_api_key() -> str:
+    file_key = load_settings().get("gemini_api_key", "").strip()
+    env_key = os.getenv("GEMINI_API_KEY", "").strip()
+    return file_key or env_key
+
+
+def set_gemini_api_key(api_key: str) -> None:
+    settings = load_settings()
+    settings["gemini_api_key"] = api_key.strip()
+    save_settings(settings)
 
 
 def load_api_catalog() -> list:
@@ -154,7 +187,8 @@ def _extract_json_block(text: str) -> str:
 
 
 def call_gemini_raw(prompt_text: str, *, temperature: float = 0.4, max_tokens: int = 280):
-    if not GEMINI_API_KEY:
+    gemini_api_key = get_gemini_api_key()
+    if not gemini_api_key:
         return "", False
 
     payload = {
@@ -167,7 +201,7 @@ def call_gemini_raw(prompt_text: str, *, temperature: float = 0.4, max_tokens: i
 
     url = (
         "https://generativelanguage.googleapis.com/v1beta/models/"
-        f"{GEMINI_MODEL}:generateContent?key={GEMINI_API_KEY}"
+        f"{GEMINI_MODEL}:generateContent?key={gemini_api_key}"
     )
 
     try:
@@ -188,7 +222,7 @@ def call_gemini_raw(prompt_text: str, *, temperature: float = 0.4, max_tokens: i
 
 
 def choose_api_tool_with_gemini(user_message: str, history: list | None = None) -> dict | None:
-    if not GEMINI_API_KEY:
+    if not get_gemini_api_key():
         return None
 
     history = history or []
@@ -576,9 +610,10 @@ def handle_local_command(message: str):
 
 
 def call_gemini(user_message: str, history: list | None = None):
-    if not GEMINI_API_KEY:
+    gemini_api_key = get_gemini_api_key()
+    if not gemini_api_key:
         return (
-            "Gemini key missing. Add GEMINI_API_KEY in .env. I can still run local commands like /help.",
+            "Gemini key missing. Add it in Stan settings or GEMINI_API_KEY in .env. I can still run local commands like /help.",
             "local",
         )
 
@@ -601,7 +636,7 @@ def call_gemini(user_message: str, history: list | None = None):
 
     url = (
         "https://generativelanguage.googleapis.com/v1beta/models/"
-        f"{GEMINI_MODEL}:generateContent?key={GEMINI_API_KEY}"
+        f"{GEMINI_MODEL}:generateContent?key={gemini_api_key}"
     )
 
     try:
@@ -643,6 +678,30 @@ def toolbox():
 @app.route("/api/health")
 def health():
     return jsonify({"ok": True, "name": STAN_NAME})
+
+
+@app.route("/api/settings", methods=["GET", "POST"])
+def api_settings():
+    if request.method == "GET":
+        gemini_key = get_gemini_api_key()
+        return jsonify(
+            {
+                "ok": True,
+                "geminiConfigured": bool(gemini_key),
+                "geminiKeyLast4": gemini_key[-4:] if len(gemini_key) >= 4 else "",
+            }
+        )
+
+    payload = request.get_json(silent=True) or {}
+    gemini_key = str(payload.get("gemini_api_key", "")).strip()
+    set_gemini_api_key(gemini_key)
+    return jsonify(
+        {
+            "ok": True,
+            "geminiConfigured": bool(gemini_key),
+            "geminiKeyLast4": gemini_key[-4:] if len(gemini_key) >= 4 else "",
+        }
+    )
 
 
 @app.route("/api/catalog")

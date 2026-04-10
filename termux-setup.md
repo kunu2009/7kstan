@@ -27,6 +27,8 @@ Optional name setting:
 
 echo STAN_NAME=Stan >> .env
 
+You can also skip the `.env` step and paste the key directly into Stan's in-app Gemini Settings panel after the server starts.
+
 ## 4) Start server
 
 source .venv/bin/activate
@@ -65,3 +67,20 @@ API Hub (separate from chat):
 - Open Stan in Chrome on Android for best mic support.
 - Tap Mic and speak a short command.
 - Toggle TTS On if you want spoken replies.
+
+## 8) Daily phone use
+
+- Open Termux and start Stan with `python app.py`.
+- Keep the server tab open while using the assistant.
+- Use `http://127.0.0.1:5000` for chat.
+- Use `http://127.0.0.1:5000/toolbox` for the API Hub.
+- Start with `/help`, then try `/time`, `/battery`, and `/study help`.
+- For quick notes, use `/todo add <task>`.
+- If voice input fails, type your message and leave TTS on.
+
+## 9) Next todo list
+
+- Add native Termux STT/TTS support.
+- Add pinned/favorite APIs in the API Hub.
+- Add export/import for custom workflows.
+- Add better health labels for APIs that need auth or rate-limit handling.

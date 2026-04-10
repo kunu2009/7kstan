@@ -158,6 +158,33 @@
       background: rgba(255,255,255,0.02);
     }
 
+    .settings-panel {
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(18,24,35,0.9), rgba(15,20,30,0.9));
+      border-radius: 14px;
+      padding: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .settings-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .settings-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .settings-note {
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
     input {
       border: 1px solid rgba(255,255,255,0.15);
       background: #0d1320;
@@ -233,6 +260,24 @@
       <span id="voice-status" class="status-pill">Voice: checking support...</span>
       <span id="net-status" class="status-pill">Network: idle</span>
     </div>
+
+    <section class="settings-panel">
+      <div class="head-row" style="justify-content: space-between;">
+        <div>
+          <div class="title" style="font-size:0.92rem;">Gemini Settings</div>
+          <div class="settings-note">Stored on this device in Stan&apos;s local data folder.</div>
+        </div>
+        <span id="gemini-status" class="status-pill">Gemini: checking...</span>
+      </div>
+      <div class="settings-row">
+        <input id="gemini-key-input" type="password" placeholder="Paste Gemini API key here" autocomplete="off" />
+        <button id="gemini-save-btn" type="button">Save Key</button>
+      </div>
+      <div class="settings-actions">
+        <button id="gemini-clear-btn" class="secondary" type="button">Clear Key</button>
+        <button id="gemini-refresh-btn" class="secondary" type="button">Refresh Status</button>
+      </div>
+    </section>
   </main>
 
   <script>
@@ -244,6 +289,11 @@
     const ttsBtn = document.getElementById("tts-btn");
     const voiceStatus = document.getElementById("voice-status");
     const netStatus = document.getElementById("net-status");
+    const geminiKeyInput = document.getElementById("gemini-key-input");
+    const geminiSaveBtn = document.getElementById("gemini-save-btn");
+    const geminiClearBtn = document.getElementById("gemini-clear-btn");
+    const geminiRefreshBtn = document.getElementById("gemini-refresh-btn");
+    const geminiStatus = document.getElementById("gemini-status");
 
     const history = [];
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -338,6 +388,33 @@
       }
     }
 
+    async function loadGeminiStatus() {
+      try {
+        const response = await fetch("/api/settings");
+        const data = await response.json();
+        if (data.geminiConfigured) {
+          geminiStatus.textContent = data.geminiKeyLast4 ? `Gemini: set (...${data.geminiKeyLast4})` : "Gemini: set";
+          geminiKeyInput.value = "";
+        } else {
+          geminiStatus.textContent = "Gemini: not set";
+        }
+      } catch {
+        geminiStatus.textContent = "Gemini: status unavailable";
+      }
+    }
+
+    async function saveGeminiKey(key) {
+      const response = await fetch("/api/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ gemini_api_key: key })
+      });
+      const data = await response.json();
+      geminiStatus.textContent = data.geminiConfigured
+        ? (data.geminiKeyLast4 ? `Gemini: set (...${data.geminiKeyLast4})` : "Gemini: set")
+        : "Gemini: not set";
+    }
+
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const message = input.value.trim();
@@ -371,6 +448,32 @@
         : "Voice: ready (mic only)";
     });
 
+    geminiSaveBtn.addEventListener("click", async () => {
+      const key = geminiKeyInput.value.trim();
+      if (!key) {
+        geminiStatus.textContent = "Gemini: paste a key first";
+        return;
+      }
+      geminiStatus.textContent = "Gemini: saving...";
+      try {
+        await saveGeminiKey(key);
+        geminiKeyInput.value = "";
+      } catch {
+        geminiStatus.textContent = "Gemini: save failed";
+      }
+    });
+
+    geminiClearBtn.addEventListener("click", async () => {
+      geminiStatus.textContent = "Gemini: clearing...";
+      try {
+        await saveGeminiKey("");
+      } catch {
+        geminiStatus.textContent = "Gemini: clear failed";
+      }
+    });
+
+    geminiRefreshBtn.addEventListener("click", loadGeminiStatus);
+
     if (recognitionSupported) {
       voiceStatus.textContent = ttsSupported
         ? "Voice: ready (mic supported)"
@@ -379,6 +482,8 @@
       micBtn.disabled = true;
       voiceStatus.textContent = "Voice: mic not supported on this browser";
     }
+
+    loadGeminiStatus();
 
     addMessage("stan", "Stan is ready. Type /help to see local commands.", "local");
   </script>
