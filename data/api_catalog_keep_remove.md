@@ -1,0 +1,182 @@
+# API Catalog Validation Report
+
+- Generated: 2026-04-10 23:59:38
+- Total: 165
+- Keep: 132
+- Review: 31
+- Remove: 2
+
+## Keep
+- advice_slip | GET | 200 | 821ms
+- affirmations | GET | 200 | 1171ms
+- agify | GET | 200 | 1843ms
+- apis_guru_list | GET | 200 | 2679ms
+- arbeitnow_jobs | GET | 200 | 614ms
+- archive_metadata | GET | 200 | 3191ms
+- arcsecond_activities | GET | 200 | 902ms
+- artic_search | GET | 200 | 2174ms
+- arxiv | GET | 200 | 96ms
+- arxiv_search | GET | 200 | 60ms
+- aviation_weather_airport | GET | 200 | 760ms
+- bacon_ipsum | GET | 200 | 1274ms
+- binary_jazz_genre | GET | 200 | 580ms
+- brasilapi_holidays | GET | 200 | 677ms
+- cat_fact | GET | 200 | 487ms
+- cataas | GET | 200 | 1352ms
+- celestrak_gp | GET | 200 | 2102ms
+- cheapshark | GET | 200 | 964ms
+- chess_com_player | GET | 200 | 477ms
+- chucknorris_joke | GET | 200 | 1489ms
+- citybikes | GET | 200 | 782ms
+- cloudflare_trace | GET | 200 | 228ms
+- cloudflare_trace_alt | GET | 200 | 38ms
+- cocktaildb_search | GET | 200 | 621ms
+- coingecko_simple | GET | 200 | 161ms
+- crossref | GET | 200 | 970ms
+- crtsh | GET | 200 | 1230ms
+- datamuse_syn | GET | 200 | 75ms
+- dawum_polls | GET | 200 | 1523ms
+- deckofcards_draw | GET | 200 | 388ms
+- deckofcards_new | GET | 200 | 351ms
+- dicebear_avatar | GET | 200 | 406ms
+- dictionary_api | GET | 200 | 82ms
+- disease_sh | GET | 200 | 1177ms
+- dns_cloudflare | GET | 200 | 92ms
+- dns_google | GET | 200 | 87ms
+- dog_ceo | GET | 200 | 704ms
+- fbi_wanted | GET | 200 | 663ms
+- fipe_models | GET | 200 | 1853ms
+- football_data_competitions | GET | 200 | 1936ms
+- frankfurter | GET | 200 | 299ms
+- freetogame | GET | 200 | 1264ms
+- genderize | GET | 200 | 1799ms
+- geocode_xyz | GET | 200 | 563ms
+- geojs_ip | GET | 200 | 325ms
+- goqr_create | GET | 200 | 758ms
+- hackernews_firebase_item | GET | 200 | 728ms
+- healthcaregov_index | GET | 200 | 1032ms
+- hn_algolia | GET | 200 | 861ms
+- http_cat_status | GET | 200 | 118ms
+- httpbin | GET | 200 | 1243ms
+- ipapi | GET | 200 | 349ms
+- ipify | GET | 200 | 298ms
+- irail_vehicle | GET | 200 | 1317ms
+- isgd_shorten | GET | 200 | 384ms
+- itunes_search | GET | 200 | 74ms
+- jikan | GET | 200 | 574ms
+- jobicy_remote | GET | 200 | 475ms
+- jsonplaceholder | GET | 200 | 175ms
+- kanye_quote | GET | 200 | 122ms
+- libretranslate | POST_JSON | 200 | 1682ms
+- makeup_products | GET | 200 | 1620ms
+- mbta_routes | GET | 200 | 1789ms
+- mediawiki_query | GET | 200 | 1776ms
+- metro_lisboa_status | GET | 200 | 880ms
+- microlink | GET | 200 | 150ms
+- musicbrainz_artist | GET | 200 | 440ms
+- nationalize | GET | 200 | 1794ms
+- newton_math | GET | 200 | 535ms
+- nhl_standings | GET | 200 | 525ms
+- nhtsa_vehicle_types | GET | 200 | 568ms
+- nominatim_reverse | GET | 200 | 67ms
+- nominatim_search | GET | 200 | 74ms
+- nppes_provider_search | GET | 200 | 886ms
+- official_joke | GET | 200 | 491ms
+- open_data_dc_traffic | GET | 200 | 3929ms
+- open_er_api | GET | 200 | 95ms
+- open_library | GET | 200 | 1326ms
+- open_meteo_air | GET | 200 | 1814ms
+- open_meteo_forecast | GET | 200 | 848ms
+- open_notify_astros | GET | 200 | 542ms
+- open_notify_astros_alt | GET | 200 | 516ms
+- open_trivia | GET | 200 | 1591ms
+- openbrewerydb | GET | 200 | 1258ms
+- openfda_drug | GET | 200 | 1756ms
+- openfda_food | GET | 200 | 1705ms
+- openfoodfacts | GET | 200 | 859ms
+- opengov_canada_package | GET | 200 | 1516ms
+- openlibrary_isbn | GET | 200 | 1085ms
+- opensensemap_box | GET | 200 | 1120ms
+- opentopodata | GET | 200 | 856ms
+- openwhyd_hot | GET | 200 | 368ms
+- pm25_latest | GET | 200 | 1122ms
+- postcodes_io | GET | 200 | 453ms
+- purgo_malum | GET | 200 | 919ms
+- qr_server | GET | 200 | 867ms
+- randomfox | GET | 200 | 1071ms
+- randomuser | GET | 200 | 664ms
+- razorpay_ifsc | GET | 200 | 86ms
+- reddit_top | GET | 200 | 448ms
+- rest_countries | GET | 200 | 903ms
+- restful_api_objects | GET | 200 | 221ms
+- robohash | GET | 200 | 495ms
+- seven_timer | GET | 200 | 1734ms
+- sg_weather_airtemp | GET | 200 | 239ms
+- softwium_books | GET | 200 | 1451ms
+- spaceflight_news | GET | 200 | 1278ms
+- spacex_latest | GET | 200 | 485ms
+- spacex_latest_launch | GET | 200 | 333ms
+- stackexchange_search | GET | 200 | 428ms
+- sunrise_sunset | GET | 200 | 497ms
+- sunrisesunset_io | GET | 200 | 490ms
+- themealdb | GET | 200 | 614ms
+- thespacedevs_agencies | GET | 200 | 1137ms
+- transport_rest_locations | GET | 200 | 441ms
+- tvmaze | GET | 200 | 1273ms
+- universities_hipolabs | GET | 200 | 1636ms
+- unshorten_me | GET | 200 | 1044ms
+- usaspending_agencies | GET | 200 | 2620ms
+- usgs_fdsn_query | GET | 200 | 1009ms
+- usgs_quakes | GET | 200 | 676ms
+- uuidtools_generate | GET | 200 | 449ms
+- vbb_transport_locations | GET | 200 | 703ms
+- viacep | GET | 200 | 1619ms
+- wayback | GET | 200 | 4898ms
+- wikipedia_summary | GET | 200 | 366ms
+- worldbank_region | GET | 200 | 919ms
+- wttr | GET | 200 | 834ms
+- wttr_london | GET | 200 | 577ms
+- xkcd_latest | GET | 200 | 1088ms
+- yesno | GET | 200 | 1399ms
+- ziptastic_zip | GET | 200 | 571ms
+
+## Review
+- apicagent_parse_ua | GET | status=None | err=Exceeded 30 redirects.
+- boardgamegeek_search | GET | status=401 | err=None
+- botw_compendium | GET | status=410 | err=None
+- breakingbad_quote | GET | status=403 | err=None
+- carbon_intensity_uk | GET | status=400 | err=None
+- colourlovers_new | GET | status=403 | err=None
+- country_is | GET | status=404 | err=None
+- currency_api_fawaz | GET | status=404 | err=None
+- datausa_population | GET | status=404 | err=None
+- dnd5e_feature | GET | status=404 | err=None
+- ergast_f1_drivers | GET | status=404 | err=None
+- federal_register_doc | GET | status=404 | err=None
+- gamerpower_giveaways | GET | status=404 | err=None
+- gbif_occurrence | GET | status=400 | err=None
+- google_favicon | GET | status=404 | err=None
+- house_stock_watcher | GET | status=403 | err=None
+- nager_holidays | GET | status=404 | err=None
+- numbersapi_fact | GET | status=404 | err=None
+- nyc_open_data_record | GET | status=400 | err=None
+- overpass_interpreter | POST_FORM | status=400 | err=None
+- picsum_image | GET | status=404 | err=None
+- pokeapi | GET | status=404 | err=None
+- police_uk_street_crime | GET | status=404 | err=None
+- quickchart | GET | status=400 | err=None
+- reqres_users | GET | status=401 | err=None
+- spaceflight_news_latest | GET | status=404 | err=None
+- urlhaus | POST_FORM | status=401 | err=None
+- wikimedia_pageviews | GET | status=400 | err=None
+- wordpress_posts | GET | status=None | err=HTTPSConnectionPool(host='example.com', port=443): Max retries exceeded with url: /wp-json/wp/v2/posts?per_page=5&context=embed (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificat
+- world_time_kolkata | GET | status=None | err=('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None))
+- zippopotam | GET | status=404 | err=None
+
+## Remove
+- ctext_headwords | GET | status=None | err=HTTPSConnectionPool(host='api.ctext.org', port=443): Read timed out.
+- iss_location | GET | status=None | err=HTTPSConnectionPool(host='api.wheretheiss.at', port=443): Read timed out. (read timeout=10)
+
+## Notes
+- Review means endpoint may still be useful but needs parameter, auth, user-agent, or rate-limit handling.
+- Remove means endpoint appears unhealthy in this sweep (server-side failure or unreachable).

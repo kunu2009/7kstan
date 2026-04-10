@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stan v1</title>
+  <style>
+    :root {
+      --bg: #0a0d12;
+      --panel: #121823;
+      --panel-2: #0f141e;
+      --text: #e7eef8;
+      --muted: #9fb3c8;
+      --accent: #7bd8ff;
+      --accent-2: #5db7f7;
+      --danger: #ff5e76;
+      --ring: rgba(123, 216, 255, 0.25);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 500px at 20% -20%, rgba(93, 183, 247, 0.22), transparent 45%),
+        radial-gradient(800px 500px at 100% 0%, rgba(123, 216, 255, 0.16), transparent 45%),
+        var(--bg);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(4px);
+    }
+
+    .title {
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+    }
+
+    .sub {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .head-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      border: 1px solid rgba(255,255,255,0.2);
+      background: linear-gradient(180deg, #1a1f2b, #141926);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 7px 10px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      min-height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    main {
+      width: 100%;
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 12px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    #chat {
+      flex: 1;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(18,24,35,0.96), rgba(15,20,30,0.96));
+      border-radius: 14px;
+      padding: 12px;
+      overflow-y: auto;
+      min-height: 52vh;
+    }
+
+    .msg {
+      max-width: 86%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      line-height: 1.45;
+      margin: 8px 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.24);
+    }
+
+    .user {
+      margin-left: auto;
+      background: linear-gradient(180deg, #1e2d42, #19263a);
+      border: 1px solid rgba(123,216,255,0.28);
+    }
+
+    .stan {
+      margin-right: auto;
+      background: linear-gradient(180deg, #121925, #0f151f);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 0.74rem;
+      margin-top: 5px;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 8px;
+    }
+
+    .secondary {
+      border-color: rgba(255,255,255,0.22);
+      background: linear-gradient(180deg, #1a1f2b, #141926);
+      color: var(--text);
+    }
+
+    .secondary.active {
+      border-color: rgba(123,216,255,0.45);
+      box-shadow: 0 0 0 3px var(--ring);
+    }
+
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .status-pill {
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 999px;
+      padding: 3px 8px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    input {
+      border: 1px solid rgba(255,255,255,0.15);
+      background: #0d1320;
+      color: var(--text);
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--accent-2);
+      box-shadow: 0 0 0 3px var(--ring);
+    }
+
+    button {
+      border: 1px solid rgba(123,216,255,0.35);
+      background: linear-gradient(180deg, #18314a, #13273d);
+      color: #dcf4ff;
+      border-radius: 12px;
+      padding: 0 16px;
+      min-height: 44px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 600px) {
+      .msg { max-width: 94%; }
+      #chat { min-height: 58vh; }
+      form { grid-template-columns: 1fr 1fr; }
+      #msg-input { grid-column: 1 / -1; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="head-row">
+      <div>
+        <h1 class="title">Stan v1 Operator Chat</h1>
+        <div class="sub">Local commands plus Gemini fallback</div>
+      </div>
+      <a class="nav-link" href="/toolbox">Open API Hub</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="chat" aria-live="polite"></section>
+
+    <form id="chat-form">
+      <input id="msg-input" placeholder="Message Stan... try /help" autocomplete="off" />
+      <button id="send-btn" type="submit">Send</button>
+      <button id="mic-btn" class="secondary" type="button">Mic</button>
+    </form>
+
+    <div class="status-row">
+      <div class="hint">Commands: /help, /time, /battery, /voice, /todo add, /todo list, /study help</div>
+      <button id="tts-btn" class="secondary" type="button">TTS Off</button>
+    </div>
+
+    <div class="status-row">
+      <span id="voice-status" class="status-pill">Voice: checking support...</span>
+      <span id="net-status" class="status-pill">Network: idle</span>
+    </div>
+  </main>
+
+  <script>
+    const chat = document.getElementById("chat");
+    const form = document.getElementById("chat-form");
+    const input = document.getElementById("msg-input");
+    const sendBtn = document.getElementById("send-btn");
+    const micBtn = document.getElementById("mic-btn");
+    const ttsBtn = document.getElementById("tts-btn");
+    const voiceStatus = document.getElementById("voice-status");
+    const netStatus = document.getElementById("net-status");
+
+    const history = [];
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognitionSupported = !!SpeechRecognition;
+    const ttsSupported = "speechSynthesis" in window;
+    let ttsEnabled = false;
+    let listening = false;
+    let recognition = null;
+
+    if (recognitionSupported) {
+      recognition = new SpeechRecognition();
+      recognition.lang = "en-IN";
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      recognition.onstart = () => {
+        listening = true;
+        micBtn.classList.add("active");
+        micBtn.textContent = "Listening...";
+        voiceStatus.textContent = "Voice: listening";
+      };
+
+      recognition.onend = () => {
+        listening = false;
+        micBtn.classList.remove("active");
+        micBtn.textContent = "Mic";
+        voiceStatus.textContent = "Voice: ready";
+      };
+
+      recognition.onerror = (event) => {
+        voiceStatus.textContent = `Voice: error (${event.error})`;
+      };
+
+      recognition.onresult = async (event) => {
+        const transcript = event.results?.[0]?.[0]?.transcript?.trim() || "";
+        if (!transcript) return;
+        input.value = transcript;
+        await sendMessage(transcript);
+      };
+    }
+
+    function addMessage(role, text, source = "local") {
+      const wrapper = document.createElement("div");
+      wrapper.className = `msg ${role}`;
+      wrapper.textContent = text;
+
+      const meta = document.createElement("div");
+      meta.className = "meta";
+      meta.textContent = role === "user" ? "You" : `Stan (${source})`;
+      wrapper.appendChild(meta);
+
+      chat.appendChild(wrapper);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function speak(text) {
+      if (!ttsEnabled || !ttsSupported || !text) return;
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = "en-IN";
+      utter.rate = 1;
+      utter.pitch = 1;
+      speechSynthesis.cancel();
+      speechSynthesis.speak(utter);
+    }
+
+    async function sendMessage(message) {
+      addMessage("user", message);
+      history.push({ role: "user", text: message });
+
+      sendBtn.disabled = true;
+      netStatus.textContent = "Network: sending";
+      try {
+        const response = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message, history })
+        });
+
+        const data = await response.json();
+        const reply = data.reply || "No reply";
+        const source = data.source || "local";
+
+        addMessage("stan", reply, source);
+        history.push({ role: "assistant", text: reply });
+        speak(reply);
+        netStatus.textContent = "Network: done";
+      } catch {
+        addMessage("stan", "Request failed. Check if server is running.", "local");
+        netStatus.textContent = "Network: failed";
+      } finally {
+        sendBtn.disabled = false;
+      }
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const message = input.value.trim();
+      if (!message) return;
+      input.value = "";
+      await sendMessage(message);
+    });
+
+    micBtn.addEventListener("click", () => {
+      if (!recognitionSupported) {
+        voiceStatus.textContent = "Voice: speech recognition not supported on this browser";
+        return;
+      }
+      if (listening) {
+        recognition.stop();
+        return;
+      }
+      recognition.start();
+    });
+
+    ttsBtn.addEventListener("click", () => {
+      if (!ttsSupported) {
+        voiceStatus.textContent = "Voice: text-to-speech not supported on this browser";
+        return;
+      }
+      ttsEnabled = !ttsEnabled;
+      ttsBtn.textContent = ttsEnabled ? "TTS On" : "TTS Off";
+      ttsBtn.classList.toggle("active", ttsEnabled);
+      voiceStatus.textContent = ttsEnabled
+        ? "Voice: ready (mic + tts)"
+        : "Voice: ready (mic only)";
+    });
+
+    if (recognitionSupported) {
+      voiceStatus.textContent = ttsSupported
+        ? "Voice: ready (mic supported)"
+        : "Voice: ready (mic only)";
+    } else {
+      micBtn.disabled = true;
+      voiceStatus.textContent = "Voice: mic not supported on this browser";
+    }
+
+    addMessage("stan", "Stan is ready. Type /help to see local commands.", "local");
+  </script>
+</body>
+</html>

@@ -1,0 +1,851 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stan API Hub</title>
+  <style>
+    :root {
+      --bg: #090d13;
+      --card: #121925;
+      --card-2: #0f151f;
+      --text: #e9f2fb;
+      --muted: #9eb3c7;
+      --line: rgba(255,255,255,0.11);
+      --acc: #7bd8ff;
+      --acc-2: #66c5f5;
+      --ok: #6dffb3;
+      --bad: #ff7f95;
+      --ring: rgba(123,216,255,0.22);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background:
+        radial-gradient(900px 500px at 10% -10%, rgba(123,216,255,0.2), transparent 45%),
+        radial-gradient(1200px 700px at 100% 0%, rgba(84,130,190,0.2), transparent 45%),
+        var(--bg);
+    }
+
+    header {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(6px);
+      background: rgba(9,13,19,0.85);
+      z-index: 20;
+    }
+
+    .head-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .title {
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: 0.3px;
+    }
+
+    .sub {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 0.83rem;
+    }
+
+    .nav {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      border: 1px solid rgba(123,216,255,0.35);
+      color: #ddf5ff;
+      background: linear-gradient(180deg, #19314a, #14283e);
+      border-radius: 10px;
+      padding: 9px 12px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.85rem;
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn.secondary {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--text);
+      background: linear-gradient(180deg, #1b212d, #151a25);
+    }
+
+    main {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(18,25,37,0.95), rgba(15,21,31,0.95));
+      padding: 12px;
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: 1fr 210px auto;
+      gap: 8px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: #0c1320;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 0.92rem;
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--acc-2);
+      box-shadow: 0 0 0 3px var(--ring);
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .workflow-inputs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .workflow-note {
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-top: 6px;
+    }
+
+    .custom-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .custom-list {
+      display: grid;
+      gap: 6px;
+      align-content: start;
+      max-height: 280px;
+      overflow: auto;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 8px;
+      background: #0c121c;
+    }
+
+    .custom-item {
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 8px;
+      background: #111827;
+      color: var(--text);
+      padding: 6px 8px;
+      cursor: pointer;
+      text-align: left;
+      font-size: 0.82rem;
+    }
+
+    .custom-item.active {
+      border-color: rgba(123,216,255,0.5);
+      box-shadow: 0 0 0 2px var(--ring);
+    }
+
+    .custom-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .pill {
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 999px;
+      padding: 4px 8px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    #list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 11px;
+      background: linear-gradient(180deg, #141d2c, #101722);
+      display: grid;
+      gap: 7px;
+    }
+
+    .name-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .name {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 0.79rem;
+      word-break: break-word;
+    }
+
+    .code {
+      font-family: Consolas, monospace;
+      background: #0c121c;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 8px;
+      font-size: 0.75rem;
+      overflow: auto;
+      max-height: 84px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .run-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .status {
+      margin-top: 10px;
+      font-size: 0.83rem;
+      color: var(--muted);
+    }
+
+    .status.ok { color: var(--ok); }
+    .status.bad { color: var(--bad); }
+
+    pre {
+      margin: 8px 0 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: Consolas, monospace;
+      background: #0c121c;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 10px;
+      min-height: 130px;
+      max-height: 360px;
+      overflow: auto;
+      font-size: 0.78rem;
+    }
+
+    @media (max-width: 900px) {
+      #list { grid-template-columns: 1fr; }
+      .filters { grid-template-columns: 1fr; }
+      .run-box { grid-template-columns: 1fr; }
+      .workflow-grid { grid-template-columns: 1fr; }
+      .workflow-inputs { grid-template-columns: 1fr; }
+      .custom-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="head-row">
+      <div>
+        <h1 class="title">Stan API Hub</h1>
+        <div class="sub">Organized endpoint toolbox, separate from chat</div>
+      </div>
+      <div class="nav">
+        <a class="btn secondary" href="/">Open Chat</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <div class="filters">
+        <input id="search" placeholder="Search by name, category, or use case" />
+        <select id="category"></select>
+        <button class="btn secondary" id="refresh" type="button">Refresh</button>
+      </div>
+      <div class="stats">
+        <span class="pill" id="count-pill">0 APIs</span>
+        <span class="pill">No-auth focused</span>
+        <span class="pill">Runs via backend proxy</span>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin:0 0 6px; font-size:0.95rem;">One-Click Workflows</h2>
+      <div class="workflow-note">Use these presets to run grouped API actions without configuring each card.</div>
+
+      <div class="workflow-inputs">
+        <input id="wf-city" value="Mumbai" placeholder="City" />
+        <input id="wf-lat" value="19.0176" placeholder="Latitude" />
+        <input id="wf-lon" value="72.8562" placeholder="Longitude" />
+        <input id="wf-domain" value="example.com" placeholder="Domain" />
+        <input id="wf-url" value="https://example.com" placeholder="URL" />
+        <input id="wf-query" value="Indian Constitution" placeholder="Topic or query" />
+        <input id="wf-date" value="2026-04" placeholder="YYYY-MM or YYYY-MM-DD" />
+      </div>
+
+      <div class="workflow-grid">
+        <button class="btn" data-workflow="network_check" type="button">Network Check</button>
+        <button class="btn" data-workflow="nearby_atm" type="button">Nearby ATM</button>
+        <button class="btn" data-workflow="weather_aqi" type="button">Weather + AQI</button>
+        <button class="btn" data-workflow="threat_check" type="button">Threat Check</button>
+        <button class="btn" data-workflow="study_pack" type="button">Study Info Pack</button>
+        <button class="btn" data-workflow="civic_snapshot" type="button">Civic Snapshot</button>
+        <button class="btn" data-workflow="transport_crime" type="button">Transport + Crime</button>
+        <button class="btn" data-workflow="science_probe" type="button">Science Probe</button>
+        <button class="btn" data-workflow="research_brief" type="button">Research Brief</button>
+        <button class="btn" data-workflow="media_scoreboard" type="button">Media Scoreboard</button>
+        <button class="btn" data-workflow="transit_weather_brief" type="button">Transit + Weather</button>
+      </div>
+
+      <h3 style="margin:12px 0 4px; font-size:0.88rem;">Custom Workflow Builder</h3>
+      <div class="workflow-note">Define your own chain as JSON array of steps. Each step format: {"id":"api_id","params":{...}}</div>
+
+      <div class="custom-grid">
+        <div>
+          <div class="small" style="margin-bottom:6px;">Saved workflows</div>
+          <div id="custom-list" class="custom-list"></div>
+        </div>
+
+        <div>
+          <input id="custom-name" placeholder="workflow name, e.g. morning_brief" />
+          <textarea id="custom-steps" rows="8" style="margin-top:8px;" placeholder='[
+  {"id":"open_meteo_forecast","params":{"lat":"19.0176","lon":"72.8562"}},
+  {"id":"open_meteo_air","params":{"lat":"19.0176","lon":"72.8562"}},
+  {"id":"nager_holidays","params":{"year":"2026","country":"IN"}}
+]'></textarea>
+          <div class="custom-actions">
+            <button class="btn" id="custom-save" type="button">Save Workflow</button>
+            <button class="btn" id="custom-run" type="button">Run Selected</button>
+            <button class="btn secondary" id="custom-load" type="button">Load Selected</button>
+            <button class="btn secondary" id="custom-delete" type="button">Delete Selected</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div id="list"></div>
+    </section>
+
+    <section class="panel">
+      <h2 style="margin:0 0 6px; font-size:0.95rem;">Runner Output</h2>
+      <div class="small">Select Run on any API card. Optional params are entered as JSON object.</div>
+      <div class="status" id="run-status">No request yet.</div>
+      <pre id="run-output">{}</pre>
+    </section>
+  </main>
+
+  <script>
+    const listEl = document.getElementById("list");
+    const searchEl = document.getElementById("search");
+    const categoryEl = document.getElementById("category");
+    const refreshEl = document.getElementById("refresh");
+    const countPill = document.getElementById("count-pill");
+    const runStatus = document.getElementById("run-status");
+    const runOutput = document.getElementById("run-output");
+    const cityEl = document.getElementById("wf-city");
+    const latEl = document.getElementById("wf-lat");
+    const lonEl = document.getElementById("wf-lon");
+    const domainEl = document.getElementById("wf-domain");
+    const urlEl = document.getElementById("wf-url");
+    const queryEl = document.getElementById("wf-query");
+    const dateEl = document.getElementById("wf-date");
+    const customListEl = document.getElementById("custom-list");
+    const customNameEl = document.getElementById("custom-name");
+    const customStepsEl = document.getElementById("custom-steps");
+    const customSaveBtn = document.getElementById("custom-save");
+    const customRunBtn = document.getElementById("custom-run");
+    const customLoadBtn = document.getElementById("custom-load");
+    const customDeleteBtn = document.getElementById("custom-delete");
+
+    let catalog = [];
+    let selectedCustomWorkflow = "";
+    const CUSTOM_WORKFLOWS_KEY = "stan_custom_workflows_v1";
+
+    function buildCategoryFilter(items) {
+      const categories = [...new Set(items.map(x => x.category || "other"))].sort();
+      categoryEl.innerHTML = "";
+      const all = document.createElement("option");
+      all.value = "all";
+      all.textContent = "All categories";
+      categoryEl.appendChild(all);
+      for (const cat of categories) {
+        const opt = document.createElement("option");
+        opt.value = cat;
+        opt.textContent = cat;
+        categoryEl.appendChild(opt);
+      }
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;");
+    }
+
+    function filteredItems() {
+      const q = searchEl.value.trim().toLowerCase();
+      const cat = categoryEl.value;
+      return catalog.filter((item) => {
+        if (cat && cat !== "all" && item.category !== cat) return false;
+        if (!q) return true;
+        const text = `${item.name} ${item.category} ${item.use_case} ${item.url}`.toLowerCase();
+        return text.includes(q);
+      });
+    }
+
+    function renderCards() {
+      const items = filteredItems();
+      countPill.textContent = `${items.length} APIs`;
+      listEl.innerHTML = "";
+
+      if (!items.length) {
+        listEl.innerHTML = '<div class="small">No APIs match this filter.</div>';
+        return;
+      }
+
+      for (const item of items) {
+        const card = document.createElement("article");
+        card.className = "card";
+
+        card.innerHTML = `
+          <div class="name-row">
+            <h3 class="name">${escapeHtml(item.name)}</h3>
+            <span class="pill">${escapeHtml(item.method)}</span>
+          </div>
+          <div class="small">Category: ${escapeHtml(item.category || "other")} | Auth: ${escapeHtml(item.auth || "unknown")}</div>
+          <div class="small">${escapeHtml(item.use_case || "")}</div>
+          <div class="code">${escapeHtml(item.url || "")}</div>
+          <div class="small">Params JSON (optional):</div>
+          <textarea rows="3" data-param-for="${escapeHtml(item.id)}" placeholder='{"query":"mumbai", "lat":"19.01", "lon":"72.85"}'></textarea>
+          <div class="actions">
+            <button class="btn" data-run="${escapeHtml(item.id)}" type="button">Run</button>
+            <button class="btn secondary" data-copy="${escapeHtml(item.id)}" type="button">Copy URL Template</button>
+          </div>
+        `;
+
+        listEl.appendChild(card);
+      }
+    }
+
+    function getParams(apiId) {
+      const box = document.querySelector(`[data-param-for="${apiId}"]`);
+      if (!box || !box.value.trim()) return {};
+      try {
+        return JSON.parse(box.value.trim());
+      } catch {
+        throw new Error("Params must be valid JSON object.");
+      }
+    }
+
+    async function invokeCatalog(id, params) {
+      const response = await fetch("/api/catalog/run", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, params })
+      });
+      return response.json();
+    }
+
+    async function runApi(apiId) {
+      try {
+        const params = getParams(apiId);
+        runStatus.className = "status";
+        runStatus.textContent = "Running request...";
+
+        const data = await invokeCatalog(apiId, params);
+        if (!data.ok) {
+          runStatus.className = "status bad";
+          runStatus.textContent = `Failed: ${data.error || "Unknown error"}`;
+          runOutput.textContent = JSON.stringify(data, null, 2);
+          return;
+        }
+
+        runStatus.className = "status ok";
+        runStatus.textContent = `Success (${data.status}) ${data.method} ${data.url}`;
+        runOutput.textContent = data.preview || "(empty response)";
+      } catch (err) {
+        runStatus.className = "status bad";
+        runStatus.textContent = `Error: ${err.message || err}`;
+      }
+    }
+
+    function workflowInputs() {
+      return {
+        city: cityEl.value.trim() || "Mumbai",
+        lat: latEl.value.trim() || "19.0176",
+        lon: lonEl.value.trim() || "72.8562",
+        domain: domainEl.value.trim() || "example.com",
+        url: urlEl.value.trim() || "https://example.com",
+        query: queryEl.value.trim() || "Indian Constitution",
+        date: dateEl.value.trim() || "2026-04"
+      };
+    }
+
+    function workflowPlan(name, w) {
+      const overpassQuery = `[out:json][timeout:25];(node[amenity=atm](around:1500,${w.lat},${w.lon}););out body 15;`;
+
+      const plans = {
+        network_check: [
+          { id: "ipify", params: {} },
+          { id: "ipapi", params: {} },
+          { id: "cloudflare_trace", params: {} }
+        ],
+        nearby_atm: [
+          { id: "nominatim_search", params: { query: w.city } },
+          { id: "overpass_interpreter", params: { query: overpassQuery } },
+          { id: "opentopodata", params: { lat: w.lat, lon: w.lon } }
+        ],
+        weather_aqi: [
+          { id: "open_meteo_forecast", params: { lat: w.lat, lon: w.lon } },
+          { id: "open_meteo_air", params: { lat: w.lat, lon: w.lon } },
+          { id: "sunrise_sunset", params: { lat: w.lat, lon: w.lon } }
+        ],
+        threat_check: [
+          { id: "urlhaus", params: { url: w.url } },
+          { id: "wayback", params: { url: w.url } },
+          { id: "microlink", params: { url: w.url } },
+          { id: "crtsh", params: { domain: w.domain } }
+        ],
+        study_pack: [
+          { id: "wikipedia_summary", params: { title: w.query } },
+          { id: "open_library", params: { query: w.query } },
+          { id: "hn_algolia", params: { query: w.query } }
+        ],
+        civic_snapshot: [
+          { id: "nager_holidays", params: { year: "2026", country: "IN" } },
+          { id: "datausa_population", params: { year: "2023" } },
+          { id: "worldbank_region", params: {} }
+        ],
+        transport_crime: [
+          { id: "vbb_transport_locations", params: { query: w.city } },
+          { id: "citybikes", params: {} },
+          { id: "police_uk_street_crime", params: { lat: w.lat, lon: w.lon, date: w.date } }
+        ],
+        science_probe: [
+          { id: "usgs_fdsn_query", params: { start: "2026-04-01", end: "2026-04-08", minmag: "4.5" } },
+          { id: "celestrak_gp", params: { intdes: "2023-015" } },
+          { id: "numbersapi_fact", params: { number: "1729", kind: "math" } }
+        ],
+        research_brief: [
+          { id: "arxiv_search", params: { query: w.query } },
+          { id: "wikipedia_summary", params: { title: w.query } },
+          { id: "quote_garden", params: { limit: "3" } }
+        ],
+        media_scoreboard: [
+          { id: "openwhyd_hot", params: { genre: w.query.toLowerCase().replace(/\s+/g, "-") || "electro" } },
+          { id: "binary_jazz_genre", params: { count: "5" } },
+          { id: "nhl_standings", params: {} },
+          { id: "football_data_competitions", params: {} }
+        ],
+        transit_weather_brief: [
+          { id: "mbta_routes", params: { route: "CR-Providence" } },
+          { id: "metro_lisboa_status", params: {} },
+          { id: "sg_weather_airtemp", params: {} },
+          { id: "aviation_weather_airport", params: { icao: "KMCI" } },
+          { id: "open_meteo_forecast", params: { lat: w.lat, lon: w.lon } }
+        ]
+      };
+
+      return plans[name] || [];
+    }
+
+    async function runWorkflow(name) {
+      const w = workflowInputs();
+      const steps = workflowPlan(name, w);
+      if (!steps.length) {
+        runStatus.className = "status bad";
+        runStatus.textContent = "Unknown workflow.";
+        return;
+      }
+
+      runStatus.className = "status";
+      runStatus.textContent = `Running workflow: ${name} (${steps.length} step(s))`;
+
+      const results = [];
+      for (let i = 0; i < steps.length; i += 1) {
+        const step = steps[i];
+        runStatus.textContent = `Workflow ${name}: step ${i + 1}/${steps.length} (${step.id})`;
+        const data = await invokeCatalog(step.id, step.params);
+        results.push({
+          step: i + 1,
+          id: step.id,
+          ok: !!data.ok,
+          status: data.status || null,
+          error: data.error || null,
+          preview: (data.preview || "").slice(0, 700)
+        });
+      }
+
+      const failed = results.filter(x => !x.ok).length;
+      runStatus.className = failed ? "status bad" : "status ok";
+      runStatus.textContent = failed
+        ? `Workflow finished with ${failed} failed step(s).`
+        : "Workflow finished successfully.";
+      runOutput.textContent = JSON.stringify({ workflow: name, inputs: w, results }, null, 2);
+    }
+
+    function getCustomWorkflows() {
+      try {
+        const raw = localStorage.getItem(CUSTOM_WORKFLOWS_KEY);
+        if (!raw) return {};
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === "object") return parsed;
+        return {};
+      } catch {
+        return {};
+      }
+    }
+
+    function setCustomWorkflows(obj) {
+      localStorage.setItem(CUSTOM_WORKFLOWS_KEY, JSON.stringify(obj));
+    }
+
+    function renderCustomWorkflows() {
+      const all = getCustomWorkflows();
+      const names = Object.keys(all).sort();
+      customListEl.innerHTML = "";
+
+      if (!names.length) {
+        customListEl.innerHTML = '<div class="small">No saved custom workflows yet.</div>';
+        return;
+      }
+
+      for (const name of names) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = `custom-item ${name === selectedCustomWorkflow ? "active" : ""}`;
+        btn.textContent = name;
+        btn.addEventListener("click", () => {
+          selectedCustomWorkflow = name;
+          renderCustomWorkflows();
+        });
+        customListEl.appendChild(btn);
+      }
+    }
+
+    function parseCustomSteps(rawText) {
+      const parsed = JSON.parse(rawText);
+      if (!Array.isArray(parsed) || !parsed.length) {
+        throw new Error("Steps must be a non-empty JSON array.");
+      }
+      for (const step of parsed) {
+        if (!step || typeof step !== "object") {
+          throw new Error("Each step must be an object.");
+        }
+        if (!step.id || typeof step.id !== "string") {
+          throw new Error("Each step needs an id string.");
+        }
+        if (step.params && typeof step.params !== "object") {
+          throw new Error("params must be an object when provided.");
+        }
+      }
+      return parsed;
+    }
+
+    async function runCustomWorkflow(name) {
+      const all = getCustomWorkflows();
+      const steps = all[name];
+      if (!Array.isArray(steps) || !steps.length) {
+        runStatus.className = "status bad";
+        runStatus.textContent = "Selected custom workflow is empty or invalid.";
+        return;
+      }
+
+      runStatus.className = "status";
+      runStatus.textContent = `Running custom workflow: ${name} (${steps.length} step(s))`;
+
+      const results = [];
+      for (let i = 0; i < steps.length; i += 1) {
+        const step = steps[i];
+        runStatus.textContent = `Custom ${name}: step ${i + 1}/${steps.length} (${step.id})`;
+        const data = await invokeCatalog(step.id, step.params || {});
+        results.push({
+          step: i + 1,
+          id: step.id,
+          ok: !!data.ok,
+          status: data.status || null,
+          error: data.error || null,
+          preview: (data.preview || "").slice(0, 700)
+        });
+      }
+
+      const failed = results.filter(x => !x.ok).length;
+      runStatus.className = failed ? "status bad" : "status ok";
+      runStatus.textContent = failed
+        ? `Custom workflow finished with ${failed} failed step(s).`
+        : "Custom workflow finished successfully.";
+      runOutput.textContent = JSON.stringify({ workflow: name, custom: true, results }, null, 2);
+    }
+
+    async function loadCatalog() {
+      runStatus.className = "status";
+      runStatus.textContent = "Loading API catalog...";
+
+      const response = await fetch("/api/catalog");
+      const data = await response.json();
+      catalog = data.items || [];
+
+      buildCategoryFilter(catalog);
+      renderCards();
+
+      runStatus.className = "status ok";
+      runStatus.textContent = `Loaded ${catalog.length} APIs.`;
+    }
+
+    listEl.addEventListener("click", async (e) => {
+      const runBtn = e.target.closest("[data-run]");
+      if (runBtn) {
+        await runApi(runBtn.getAttribute("data-run"));
+        return;
+      }
+
+      const copyBtn = e.target.closest("[data-copy]");
+      if (copyBtn) {
+        const apiId = copyBtn.getAttribute("data-copy");
+        const item = catalog.find(x => x.id === apiId);
+        if (item?.url) {
+          await navigator.clipboard.writeText(item.url);
+          runStatus.className = "status ok";
+          runStatus.textContent = "URL template copied.";
+        }
+      }
+    });
+
+    document.body.addEventListener("click", async (e) => {
+      const wf = e.target.closest("[data-workflow]");
+      if (!wf) return;
+      await runWorkflow(wf.getAttribute("data-workflow"));
+    });
+
+    customSaveBtn.addEventListener("click", () => {
+      try {
+        const name = customNameEl.value.trim();
+        if (!name) {
+          throw new Error("Workflow name is required.");
+        }
+        const steps = parseCustomSteps(customStepsEl.value.trim());
+        const all = getCustomWorkflows();
+        all[name] = steps;
+        setCustomWorkflows(all);
+        selectedCustomWorkflow = name;
+        renderCustomWorkflows();
+        runStatus.className = "status ok";
+        runStatus.textContent = `Saved custom workflow: ${name}`;
+      } catch (err) {
+        runStatus.className = "status bad";
+        runStatus.textContent = `Save failed: ${err.message || err}`;
+      }
+    });
+
+    customLoadBtn.addEventListener("click", () => {
+      const name = selectedCustomWorkflow;
+      if (!name) {
+        runStatus.className = "status bad";
+        runStatus.textContent = "Select a saved workflow first.";
+        return;
+      }
+      const all = getCustomWorkflows();
+      const steps = all[name];
+      if (!steps) {
+        runStatus.className = "status bad";
+        runStatus.textContent = "Workflow not found.";
+        return;
+      }
+      customNameEl.value = name;
+      customStepsEl.value = JSON.stringify(steps, null, 2);
+      runStatus.className = "status ok";
+      runStatus.textContent = `Loaded custom workflow: ${name}`;
+    });
+
+    customDeleteBtn.addEventListener("click", () => {
+      const name = selectedCustomWorkflow;
+      if (!name) {
+        runStatus.className = "status bad";
+        runStatus.textContent = "Select a workflow to delete.";
+        return;
+      }
+      const all = getCustomWorkflows();
+      delete all[name];
+      setCustomWorkflows(all);
+      selectedCustomWorkflow = "";
+      renderCustomWorkflows();
+      runStatus.className = "status ok";
+      runStatus.textContent = `Deleted custom workflow: ${name}`;
+    });
+
+    customRunBtn.addEventListener("click", async () => {
+      if (!selectedCustomWorkflow) {
+        runStatus.className = "status bad";
+        runStatus.textContent = "Select a saved workflow first.";
+        return;
+      }
+      await runCustomWorkflow(selectedCustomWorkflow);
+    });
+
+    searchEl.addEventListener("input", renderCards);
+    categoryEl.addEventListener("change", renderCards);
+    refreshEl.addEventListener("click", loadCatalog);
+
+    loadCatalog().catch((err) => {
+      runStatus.className = "status bad";
+      runStatus.textContent = `Load failed: ${err.message || err}`;
+    });
+
+    renderCustomWorkflows();
+  </script>
+</body>
+</html>

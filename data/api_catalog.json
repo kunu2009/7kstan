@@ -1,0 +1,1502 @@
+[
+    {
+        "id":  "world_time_kolkata",
+        "name":  "World Time API",
+        "category":  "time",
+        "method":  "GET",
+        "url":  "https://worldtimeapi.org/api/timezone/Asia/Kolkata",
+        "auth":  "none",
+        "use_case":  "Current time and timezone details"
+    },
+    {
+        "id":  "rest_countries",
+        "name":  "REST Countries",
+        "category":  "geo",
+        "method":  "GET",
+        "url":  "https://restcountries.com/v3.1/name/{country}",
+        "auth":  "none",
+        "use_case":  "Country facts, flags, currencies"
+    },
+    {
+        "id":  "zippopotam",
+        "name":  "Zippopotam",
+        "category":  "geo",
+        "method":  "GET",
+        "url":  "https://api.zippopotam.us/{country}/{postal_code}",
+        "auth":  "none",
+        "use_case":  "Postal code lookup"
+    },
+    {
+        "id":  "open_meteo_forecast",
+        "name":  "Open-Meteo Forecast",
+        "category":  "weather",
+        "method":  "GET",
+        "url":  "https://api.open-meteo.com/v1/forecast?latitude={lat}\u0026longitude={lon}\u0026current=temperature_2m,weather_code",
+        "auth":  "none",
+        "use_case":  "Current weather and planning"
+    },
+    {
+        "id":  "wttr",
+        "name":  "wttr.in",
+        "category":  "weather",
+        "method":  "GET",
+        "url":  "https://wttr.in/{city}?format=j1",
+        "auth":  "none",
+        "use_case":  "Quick weather summary JSON"
+    },
+    {
+        "id":  "open_library",
+        "name":  "Open Library",
+        "category":  "education",
+        "method":  "GET",
+        "url":  "https://openlibrary.org/search.json?q={query}",
+        "auth":  "none",
+        "use_case":  "Books and references"
+    },
+    {
+        "id":  "wikipedia_summary",
+        "name":  "Wikipedia Summary",
+        "category":  "education",
+        "method":  "GET",
+        "url":  "https://en.wikipedia.org/api/rest_v1/page/summary/{title}",
+        "auth":  "none",
+        "use_case":  "Instant concept summaries"
+    },
+    {
+        "id":  "universities_hipolabs",
+        "name":  "Universities List",
+        "category":  "education",
+        "method":  "GET",
+        "url":  "http://universities.hipolabs.com/search?country={country}",
+        "auth":  "none",
+        "use_case":  "College discovery"
+    },
+    {
+        "id":  "qr_server",
+        "name":  "QR Code Server",
+        "category":  "utility",
+        "method":  "GET",
+        "url":  "https://api.qrserver.com/v1/create-qr-code/?size=200x200\u0026data={text}",
+        "auth":  "none",
+        "use_case":  "Generate QR links/images"
+    },
+    {
+        "id":  "httpbin",
+        "name":  "HTTPBin",
+        "category":  "dev",
+        "method":  "GET",
+        "url":  "https://httpbin.org/get",
+        "auth":  "none",
+        "use_case":  "Request/response debugging"
+    },
+    {
+        "id":  "jsonplaceholder",
+        "name":  "JSONPlaceholder",
+        "category":  "dev",
+        "method":  "GET",
+        "url":  "https://jsonplaceholder.typicode.com/todos/1",
+        "auth":  "none",
+        "use_case":  "Fake test data"
+    },
+    {
+        "id":  "official_joke",
+        "name":  "Official Joke API",
+        "category":  "fun",
+        "method":  "GET",
+        "url":  "https://official-joke-api.appspot.com/random_joke",
+        "auth":  "none",
+        "use_case":  "Random joke"
+    },
+    {
+        "id":  "advice_slip",
+        "name":  "Advice Slip",
+        "category":  "fun",
+        "method":  "GET",
+        "url":  "https://api.adviceslip.com/advice",
+        "auth":  "none",
+        "use_case":  "Daily advice"
+    },
+    {
+        "id":  "cat_fact",
+        "name":  "Cat Facts",
+        "category":  "fun",
+        "method":  "GET",
+        "url":  "https://catfact.ninja/fact",
+        "auth":  "none",
+        "use_case":  "Random fact"
+    },
+    {
+        "id":  "frankfurter",
+        "name":  "Frankfurter",
+        "category":  "finance",
+        "method":  "GET",
+        "url":  "https://api.frankfurter.app/latest?from={from}\u0026to={to}",
+        "auth":  "none",
+        "use_case":  "Currency conversion"
+    },
+    {
+        "id":  "coingecko_simple",
+        "name":  "CoinGecko",
+        "category":  "finance",
+        "method":  "GET",
+        "url":  "https://api.coingecko.com/api/v3/simple/price?ids={coin_id}\u0026vs_currencies={vs}",
+        "auth":  "none",
+        "use_case":  "Crypto prices"
+    },
+    {
+        "id":  "dictionary_api",
+        "name":  "Dictionary API",
+        "category":  "language",
+        "method":  "GET",
+        "url":  "https://api.dictionaryapi.dev/api/v2/entries/en/{word}",
+        "auth":  "none",
+        "use_case":  "Word meaning and examples"
+    },
+    {
+        "id":  "datamuse_syn",
+        "name":  "Datamuse Synonyms",
+        "category":  "language",
+        "method":  "GET",
+        "url":  "https://api.datamuse.com/words?rel_syn={word}",
+        "auth":  "none",
+        "use_case":  "Synonym finder"
+    },
+    {
+        "id":  "libretranslate",
+        "name":  "LibreTranslate Demo",
+        "category":  "language",
+        "method":  "POST_JSON",
+        "url":  "https://libretranslate.de/translate",
+        "auth":  "none",
+        "use_case":  "Quick translation",
+        "json_body":  {
+                          "q":  "{text}",
+                          "source":  "{source}",
+                          "target":  "{target}",
+                          "format":  "text"
+                      }
+    },
+    {
+        "id":  "ipify",
+        "name":  "IPify",
+        "category":  "osint",
+        "method":  "GET",
+        "url":  "https://api.ipify.org?format=json",
+        "auth":  "none",
+        "use_case":  "Get current public IP"
+    },
+    {
+        "id":  "ipapi",
+        "name":  "IPAPI",
+        "category":  "osint",
+        "method":  "GET",
+        "url":  "https://ipapi.co/json/",
+        "auth":  "none",
+        "use_case":  "IP geolocation and ASN"
+    },
+    {
+        "id":  "cloudflare_trace",
+        "name":  "Cloudflare Trace",
+        "category":  "osint",
+        "method":  "GET",
+        "url":  "https://www.cloudflare.com/cdn-cgi/trace",
+        "auth":  "none",
+        "use_case":  "Network diagnostics"
+    },
+    {
+        "id":  "crtsh",
+        "name":  "crt.sh",
+        "category":  "osint",
+        "method":  "GET",
+        "url":  "https://crt.sh/?q={domain}\u0026output=json",
+        "auth":  "none",
+        "use_case":  "Certificate transparency search"
+    },
+    {
+        "id":  "wayback",
+        "name":  "Wayback Availability",
+        "category":  "osint",
+        "method":  "GET",
+        "url":  "https://archive.org/wayback/available?url={url}",
+        "auth":  "none",
+        "use_case":  "Check archived website snapshots"
+    },
+    {
+        "id":  "urlhaus",
+        "name":  "URLhaus",
+        "category":  "osint",
+        "method":  "POST_FORM",
+        "url":  "https://urlhaus-api.abuse.ch/v1/url/",
+        "auth":  "none",
+        "use_case":  "Known malicious URL lookup",
+        "form_body":  {
+                          "url":  "{url}"
+                      }
+    },
+    {
+        "id":  "nominatim_search",
+        "name":  "Nominatim Search",
+        "category":  "maps",
+        "method":  "GET",
+        "url":  "https://nominatim.openstreetmap.org/search?q={query}\u0026format=jsonv2",
+        "auth":  "none",
+        "use_case":  "Geocode place names"
+    },
+    {
+        "id":  "nominatim_reverse",
+        "name":  "Nominatim Reverse",
+        "category":  "maps",
+        "method":  "GET",
+        "url":  "https://nominatim.openstreetmap.org/reverse?lat={lat}\u0026lon={lon}\u0026format=jsonv2",
+        "auth":  "none",
+        "use_case":  "Reverse geocode coordinates"
+    },
+    {
+        "id":  "overpass_interpreter",
+        "name":  "Overpass API",
+        "category":  "maps",
+        "method":  "POST_FORM",
+        "url":  "https://overpass-api.de/api/interpreter",
+        "auth":  "none",
+        "use_case":  "Query nearby OSM places",
+        "form_body":  {
+                          "data":  "{query}"
+                      }
+    },
+    {
+        "id":  "opentopodata",
+        "name":  "OpenTopoData",
+        "category":  "maps",
+        "method":  "GET",
+        "url":  "https://api.opentopodata.org/v1/srtm90m?locations={lat},{lon}",
+        "auth":  "none",
+        "use_case":  "Elevation lookup"
+    },
+    {
+        "id":  "sunrise_sunset",
+        "name":  "Sunrise Sunset",
+        "category":  "maps",
+        "method":  "GET",
+        "url":  "https://api.sunrise-sunset.org/json?lat={lat}\u0026lng={lon}\u0026formatted=0",
+        "auth":  "none",
+        "use_case":  "Sunrise and sunset times"
+    },
+    {
+        "id":  "hn_algolia",
+        "name":  "Hacker News Search",
+        "category":  "learning",
+        "method":  "GET",
+        "url":  "https://hn.algolia.com/api/v1/search?query={query}",
+        "auth":  "none",
+        "use_case":  "Tech and startup feed"
+    },
+    {
+        "id":  "stackexchange_search",
+        "name":  "StackExchange Search",
+        "category":  "learning",
+        "method":  "GET",
+        "url":  "https://api.stackexchange.com/2.3/search/advanced?order=desc\u0026sort=votes\u0026tagged={tag}\u0026site=stackoverflow",
+        "auth":  "none",
+        "use_case":  "Find top coding answers"
+    },
+    {
+        "id":  "arxiv",
+        "name":  "arXiv",
+        "category":  "learning",
+        "method":  "GET",
+        "url":  "https://export.arxiv.org/api/query?search_query=all:{query}\u0026start=0\u0026max_results=5",
+        "auth":  "none",
+        "use_case":  "Research feed"
+    },
+    {
+        "id":  "crossref",
+        "name":  "Crossref Works",
+        "category":  "learning",
+        "method":  "GET",
+        "url":  "https://api.crossref.org/works?query={query}\u0026rows=5",
+        "auth":  "none",
+        "use_case":  "Article and book metadata"
+    },
+    {
+        "id":  "nager_holidays",
+        "name":  "Nager Date",
+        "category":  "government",
+        "method":  "GET",
+        "url":  "https://date.nager.at/api/v3/PublicHolidays/{year}/{country}",
+        "auth":  "none",
+        "use_case":  "Public holidays by country"
+    },
+    {
+        "id":  "usgs_quakes",
+        "name":  "USGS Earthquake Feed",
+        "category":  "government",
+        "method":  "GET",
+        "url":  "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson",
+        "auth":  "none",
+        "use_case":  "Recent earthquake activity"
+    },
+    {
+        "id":  "iss_location",
+        "name":  "Where The ISS At",
+        "category":  "science",
+        "method":  "GET",
+        "url":  "https://api.wheretheiss.at/v1/satellites/25544",
+        "auth":  "none",
+        "use_case":  "Live ISS position"
+    },
+    {
+        "id":  "open_notify_astros",
+        "name":  "Open Notify Astros",
+        "category":  "science",
+        "method":  "GET",
+        "url":  "http://api.open-notify.org/astros.json",
+        "auth":  "none",
+        "use_case":  "People currently in space"
+    },
+    {
+        "id":  "open_meteo_air",
+        "name":  "Open-Meteo Air Quality",
+        "category":  "science",
+        "method":  "GET",
+        "url":  "https://air-quality-api.open-meteo.com/v1/air-quality?latitude={lat}\u0026longitude={lon}\u0026hourly=pm10,pm2_5,ozone",
+        "auth":  "none",
+        "use_case":  "Air quality and pollution values"
+    },
+    {
+        "id":  "tvmaze",
+        "name":  "TVMaze",
+        "category":  "media",
+        "method":  "GET",
+        "url":  "https://api.tvmaze.com/search/shows?q={query}",
+        "auth":  "none",
+        "use_case":  "TV show search"
+    },
+    {
+        "id":  "jikan",
+        "name":  "Jikan Anime",
+        "category":  "media",
+        "method":  "GET",
+        "url":  "https://api.jikan.moe/v4/anime?q={query}\u0026limit=3",
+        "auth":  "none",
+        "use_case":  "Anime search"
+    },
+    {
+        "id":  "pokeapi",
+        "name":  "PokeAPI",
+        "category":  "media",
+        "method":  "GET",
+        "url":  "https://pokeapi.co/api/v2/pokemon/{pokemon}",
+        "auth":  "none",
+        "use_case":  "Pokemon data"
+    },
+    {
+        "id":  "cataas",
+        "name":  "Cataas",
+        "category":  "media",
+        "method":  "GET",
+        "url":  "https://cataas.com/cat?json=true",
+        "auth":  "none",
+        "use_case":  "Cat image/fact style content"
+    },
+    {
+        "id":  "dns_google",
+        "name":  "Google DNS over HTTPS",
+        "category":  "dev",
+        "method":  "GET",
+        "url":  "https://dns.google/resolve?name={domain}\u0026type=A",
+        "auth":  "none",
+        "use_case":  "DNS checks"
+    },
+    {
+        "id":  "dns_cloudflare",
+        "name":  "Cloudflare DNS over HTTPS",
+        "category":  "dev",
+        "method":  "GET",
+        "url":  "https://cloudflare-dns.com/dns-query?name={domain}\u0026type=A",
+        "auth":  "none",
+        "use_case":  "DNS checks with alternate resolver",
+        "headers":  {
+                        "accept":  "application/dns-json"
+                    }
+    },
+    {
+        "id":  "microlink",
+        "name":  "Microlink",
+        "category":  "dev",
+        "method":  "GET",
+        "url":  "https://api.microlink.io/?url={url}",
+        "auth":  "none",
+        "use_case":  "Open Graph and rich link previews"
+    },
+    {
+        "id":  "chess_com_player",
+        "name":  "Chess.com Player",
+        "category":  "games",
+        "method":  "GET",
+        "url":  "https://api.chess.com/pub/player/{username}",
+        "auth":  "none",
+        "use_case":  "Chess profile and activity"
+    },
+    {
+        "id":  "open_trivia",
+        "name":  "Open Trivia DB",
+        "category":  "games",
+        "method":  "GET",
+        "url":  "https://opentdb.com/api.php?amount={amount}",
+        "auth":  "none",
+        "use_case":  "Quiz questions for study and fun"
+    },
+    {
+        "id":  "cheapshark",
+        "name":  "CheapShark",
+        "category":  "games",
+        "method":  "GET",
+        "url":  "https://www.cheapshark.com/api/1.0/deals?storeID=1\u0026upperPrice={max_price}",
+        "auth":  "none",
+        "use_case":  "PC game deals"
+    },
+    {
+        "id":  "freetogame",
+        "name":  "FreeToGame",
+        "category":  "games",
+        "method":  "GET",
+        "url":  "https://www.freetogame.com/api/games",
+        "auth":  "none",
+        "use_case":  "Free game discovery"
+    },
+    {
+        "id":  "spacex_latest",
+        "name":  "SpaceX Latest Launch",
+        "category":  "science",
+        "method":  "GET",
+        "url":  "https://api.spacexdata.com/v4/launches/latest",
+        "auth":  "none",
+        "use_case":  "Latest SpaceX launch details"
+    },
+    {
+        "id":  "disease_sh",
+        "name":  "Disease.sh Global Stats",
+        "category":  "health",
+        "method":  "GET",
+        "url":  "https://disease.sh/v3/covid-19/all",
+        "auth":  "none",
+        "use_case":  "Global health metrics"
+    },
+    {
+        "id":  "openfda_drug",
+        "name":  "openFDA Drug Label",
+        "category":  "health",
+        "method":  "GET",
+        "url":  "https://api.fda.gov/drug/label.json?limit=1",
+        "auth":  "none",
+        "use_case":  "Drug label and safety metadata"
+    },
+    {
+        "id":  "arbeitnow_jobs",
+        "name":  "Arbeitnow Jobs",
+        "category":  "jobs",
+        "method":  "GET",
+        "url":  "https://www.arbeitnow.com/api/job-board-api",
+        "auth":  "none",
+        "use_case":  "Job board feed"
+    },
+    {
+        "id":  "randomuser",
+        "name":  "RandomUser",
+        "category":  "utility",
+        "method":  "GET",
+        "url":  "https://randomuser.me/api/",
+        "auth":  "none",
+        "use_case":  "Mock person data"
+    },
+    {
+        "id":  "yesno",
+        "name":  "Yes No",
+        "category":  "fun",
+        "method":  "GET",
+        "url":  "https://yesno.wtf/api",
+        "auth":  "none",
+        "use_case":  "Quick yes or no decision helper"
+    },
+    {
+        "id":  "dog_ceo",
+        "name":  "Dog CEO",
+        "category":  "fun",
+        "method":  "GET",
+        "url":  "https://dog.ceo/api/breeds/image/random",
+        "auth":  "none",
+        "use_case":  "Random dog image"
+    },
+    {
+        "id":  "xkcd_latest",
+        "name":  "xkcd Latest",
+        "category":  "fun",
+        "method":  "GET",
+        "url":  "https://xkcd.com/info.0.json",
+        "auth":  "none",
+        "use_case":  "Latest xkcd comic"
+    },
+    {
+        "id":  "openbrewerydb",
+        "name":  "Open Brewery DB",
+        "category":  "open-data",
+        "method":  "GET",
+        "url":  "https://api.openbrewerydb.org/v1/breweries?by_city={city}",
+        "auth":  "none",
+        "use_case":  "Location-based open business dataset"
+    },
+    {
+        "id":  "openfoodfacts",
+        "name":  "Open Food Facts",
+        "category":  "open-data",
+        "method":  "GET",
+        "url":  "https://world.openfoodfacts.org/api/v0/product/{barcode}.json",
+        "auth":  "none",
+        "use_case":  "Food barcode details"
+    },
+    {
+        "id":  "citybikes",
+        "name":  "CityBikes",
+        "category":  "transport",
+        "method":  "GET",
+        "url":  "https://api.citybik.es/v2/networks",
+        "auth":  "none",
+        "use_case":  "Bike share networks and stations"
+    },
+    {
+        "id":  "transport_rest_locations",
+        "name":  "Transport.rest Locations",
+        "category":  "transport",
+        "method":  "GET",
+        "url":  "https://v6.db.transport.rest/locations?query={query}\u0026results=5",
+        "auth":  "none",
+        "use_case":  "Public transport location search"
+    },
+    {
+        "id":  "themealdb",
+        "name":  "TheMealDB",
+        "category":  "food",
+        "method":  "GET",
+        "url":  "https://www.themealdb.com/api/json/v1/1/search.php?s={query}",
+        "auth":  "none",
+        "use_case":  "Meal recipe lookup"
+    },
+    {
+        "id":  "currency_api_fawaz",
+        "name":  "Currency API (Fawaz)",
+        "category":  "finance",
+        "method":  "GET",
+        "url":  "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/{from}.json",
+        "auth":  "none",
+        "use_case":  "Large currency matrix"
+    },
+    {
+        "id":  "apis_guru_list",
+        "name":  "APIs.guru List",
+        "category":  "api-directory",
+        "method":  "GET",
+        "url":  "https://api.apis.guru/v2/list.json",
+        "auth":  "none",
+        "use_case":  "Discover OpenAPI specs"
+    },
+    {
+        "id":  "artic_search",
+        "name":  "Art Institute of Chicago",
+        "category":  "art",
+        "method":  "GET",
+        "url":  "https://api.artic.edu/api/v1/artworks/search?q={query}",
+        "auth":  "none",
+        "use_case":  "Museum artwork search"
+    },
+    {
+        "id":  "colourlovers_new",
+        "name":  "COLOURlovers",
+        "category":  "art",
+        "method":  "GET",
+        "url":  "https://www.colourlovers.com/api/colors/new?format=json",
+        "auth":  "none",
+        "use_case":  "Color trends and palettes"
+    },
+    {
+        "id":  "dicebear_avatar",
+        "name":  "DiceBear Pixel Avatar",
+        "category":  "art",
+        "method":  "GET",
+        "url":  "https://api.dicebear.com/6.x/pixel-art/svg?seed={seed}",
+        "auth":  "none",
+        "use_case":  "Generate SVG avatars"
+    },
+    {
+        "id":  "http_cat_status",
+        "name":  "HTTP Cats",
+        "category":  "art",
+        "method":  "GET",
+        "url":  "https://http.cat/{status}",
+        "auth":  "none",
+        "use_case":  "HTTP status visual references"
+    },
+    {
+        "id":  "picsum_image",
+        "name":  "Lorem Picsum",
+        "category":  "art",
+        "method":  "GET",
+        "url":  "https://picsum.photos/{width}/{height}",
+        "auth":  "none",
+        "use_case":  "Placeholder image generation"
+    },
+    {
+        "id":  "randomfox",
+        "name":  "RandomFox",
+        "category":  "fun",
+        "method":  "GET",
+        "url":  "https://randomfox.ca/floof/",
+        "auth":  "none",
+        "use_case":  "Random fox images"
+    },
+    {
+        "id":  "robohash",
+        "name":  "RoboHash",
+        "category":  "art",
+        "method":  "GET",
+        "url":  "https://robohash.org/{text}.png",
+        "auth":  "none",
+        "use_case":  "Unique robot image by text"
+    },
+    {
+        "id":  "hackernews_firebase_item",
+        "name":  "Hacker News Firebase Item",
+        "category":  "learning",
+        "method":  "GET",
+        "url":  "https://hacker-news.firebaseio.com/v0/item/{item_id}.json",
+        "auth":  "none",
+        "use_case":  "Raw Hacker News item lookup"
+    },
+    {
+        "id":  "reddit_top",
+        "name":  "Reddit Top Posts",
+        "category":  "content",
+        "method":  "GET",
+        "url":  "https://www.reddit.com/r/{subreddit}/top.json?limit=10\u0026t=week",
+        "auth":  "none",
+        "use_case":  "Top subreddit posts feed"
+    },
+    {
+        "id":  "mediawiki_query",
+        "name":  "MediaWiki API",
+        "category":  "content",
+        "method":  "GET",
+        "url":  "https://en.wikipedia.org/w/api.php?action=query\u0026prop=extracts\u0026explaintext=1\u0026titles={title}\u0026format=json",
+        "auth":  "none",
+        "use_case":  "Page content extraction"
+    },
+    {
+        "id":  "wordpress_posts",
+        "name":  "WordPress Public Posts",
+        "category":  "content",
+        "method":  "GET",
+        "url":  "https://{domain}/wp-json/wp/v2/posts?per_page=5\u0026context=embed",
+        "auth":  "none",
+        "use_case":  "Public WordPress feed"
+    },
+    {
+        "id":  "open_er_api",
+        "name":  "Open ExchangeRate API",
+        "category":  "finance",
+        "method":  "GET",
+        "url":  "https://open.er-api.com/v6/latest/{base}",
+        "auth":  "none",
+        "use_case":  "Currency rates by base currency"
+    },
+    {
+        "id":  "razorpay_ifsc",
+        "name":  "Razorpay IFSC",
+        "category":  "finance",
+        "method":  "GET",
+        "url":  "https://ifsc.razorpay.com/{ifsc}",
+        "auth":  "none",
+        "use_case":  "Indian bank branch lookup by IFSC"
+    },
+    {
+        "id":  "agify",
+        "name":  "Agify",
+        "category":  "dev",
+        "method":  "GET",
+        "url":  "https://api.agify.io?name={name}",
+        "auth":  "none",
+        "use_case":  "Age prediction from name"
+    },
+    {
+        "id":  "genderize",
+        "name":  "Genderize",
+        "category":  "dev",
+        "method":  "GET",
+        "url":  "https://api.genderize.io?name={name}",
+        "auth":  "none",
+        "use_case":  "Gender prediction from name"
+    },
+    {
+        "id":  "nationalize",
+        "name":  "Nationalize",
+        "category":  "dev",
+        "method":  "GET",
+        "url":  "https://api.nationalize.io?name={name}",
+        "auth":  "none",
+        "use_case":  "Nationality probability from name"
+    },
+    {
+        "id":  "quickchart",
+        "name":  "QuickChart",
+        "category":  "dev",
+        "method":  "GET",
+        "url":  "https://quickchart.io/chart?c={chart}",
+        "auth":  "none",
+        "use_case":  "Generate chart images"
+    },
+    {
+        "id":  "isgd_shorten",
+        "name":  "is.gd URL Shortener",
+        "category":  "dev",
+        "method":  "GET",
+        "url":  "https://is.gd/create.php?format=simple\u0026url={url}",
+        "auth":  "none",
+        "use_case":  "Shorten URL"
+    },
+    {
+        "id":  "unshorten_me",
+        "name":  "Unshorten.me",
+        "category":  "dev",
+        "method":  "GET",
+        "url":  "https://unshorten.me/json/{shortcode}",
+        "auth":  "none",
+        "use_case":  "Expand shortened URLs"
+    },
+    {
+        "id":  "country_is",
+        "name":  "Country.is",
+        "category":  "geo",
+        "method":  "GET",
+        "url":  "https://api.country.is/{ip}",
+        "auth":  "none",
+        "use_case":  "Country lookup by IP"
+    },
+    {
+        "id":  "geojs_ip",
+        "name":  "GeoJS IP",
+        "category":  "geo",
+        "method":  "GET",
+        "url":  "https://get.geojs.io/v1/ip/geo.json",
+        "auth":  "none",
+        "use_case":  "Geolocation by IP"
+    },
+    {
+        "id":  "geocode_xyz",
+        "name":  "Geocode.xyz",
+        "category":  "geo",
+        "method":  "GET",
+        "url":  "https://geocode.xyz/{lat},{lon}?geoit=json",
+        "auth":  "none",
+        "use_case":  "Reverse geocode coordinates"
+    },
+    {
+        "id":  "postcodes_io",
+        "name":  "Postcodes.io",
+        "category":  "geo",
+        "method":  "GET",
+        "url":  "https://api.postcodes.io/postcodes/{postcode}",
+        "auth":  "none",
+        "use_case":  "UK postcode lookup"
+    },
+    {
+        "id":  "viacep",
+        "name":  "ViaCEP",
+        "category":  "geo",
+        "method":  "GET",
+        "url":  "https://viacep.com.br/ws/{cep}/json/",
+        "auth":  "none",
+        "use_case":  "Brazil postal code lookup"
+    },
+    {
+        "id":  "fbi_wanted",
+        "name":  "FBI Wanted",
+        "category":  "government",
+        "method":  "GET",
+        "url":  "https://api.fbi.gov/wanted/v1/list",
+        "auth":  "none",
+        "use_case":  "Wanted notices public feed"
+    },
+    {
+        "id":  "usaspending_agencies",
+        "name":  "USAspending Top Agencies",
+        "category":  "government",
+        "method":  "GET",
+        "url":  "https://api.usaspending.gov/api/v2/references/toptier_agencies/",
+        "auth":  "none",
+        "use_case":  "US federal agencies reference data"
+    },
+    {
+        "id":  "healthcaregov_index",
+        "name":  "HealthCare.gov Index",
+        "category":  "health",
+        "method":  "GET",
+        "url":  "https://www.healthcare.gov/api/index.json",
+        "auth":  "none",
+        "use_case":  "Healthcare.gov public API index"
+    },
+    {
+        "id":  "openfda_food",
+        "name":  "openFDA Food Enforcement",
+        "category":  "health",
+        "method":  "GET",
+        "url":  "https://api.fda.gov/food/enforcement.json?limit=10",
+        "auth":  "none",
+        "use_case":  "Food recall/enforcement data"
+    },
+    {
+        "id":  "affirmations",
+        "name":  "Affirmations",
+        "category":  "inspiration",
+        "method":  "GET",
+        "url":  "https://www.affirmations.dev/",
+        "auth":  "none",
+        "use_case":  "Positive affirmation prompts"
+    },
+    {
+        "id":  "jobicy_remote",
+        "name":  "Jobicy Remote Jobs",
+        "category":  "jobs",
+        "method":  "GET",
+        "url":  "https://jobicy.com/api/v2/remote-jobs?count=20\u0026geo={geo}\u0026industry={industry}",
+        "auth":  "none",
+        "use_case":  "Remote jobs list"
+    },
+    {
+        "id":  "spaceflight_news",
+        "name":  "Spaceflight News",
+        "category":  "science",
+        "method":  "GET",
+        "url":  "https://api.spaceflightnewsapi.net/v4/articles/?limit=10",
+        "auth":  "none",
+        "use_case":  "Latest space industry news"
+    },
+    {
+        "id":  "thespacedevs_agencies",
+        "name":  "TheSpaceDevs Agencies",
+        "category":  "science",
+        "method":  "GET",
+        "url":  "https://ll.thespacedevs.com/2.2.0/agencies/?limit=10",
+        "auth":  "none",
+        "use_case":  "Space agency reference data"
+    },
+    {
+        "id":  "ergast_f1_drivers",
+        "name":  "Ergast F1 Drivers",
+        "category":  "sports",
+        "method":  "GET",
+        "url":  "https://ergast.com/api/f1/drivers.json",
+        "auth":  "none",
+        "use_case":  "Formula 1 drivers data"
+    },
+    {
+        "id":  "seven_timer",
+        "name":  "7Timer Astro Weather",
+        "category":  "weather",
+        "method":  "GET",
+        "url":  "http://www.7timer.info/bin/api.pl?lon={lon}\u0026lat={lat}\u0026product=astro\u0026output=json",
+        "auth":  "none",
+        "use_case":  "Astronomy weather forecast"
+    },
+    {
+        "id":  "aviation_weather_airport",
+        "name":  "Aviation Weather Airport",
+        "category":  "weather",
+        "method":  "GET",
+        "url":  "https://aviationweather.gov/api/data/airport?ids={icao}",
+        "auth":  "none",
+        "use_case":  "Airport weather and conditions"
+    },
+    {
+        "id":  "opensensemap_box",
+        "name":  "openSenseMap Box",
+        "category":  "weather",
+        "method":  "GET",
+        "url":  "https://api.opensensemap.org/boxes/{box_id}?format=json",
+        "auth":  "none",
+        "use_case":  "Personal sensor station data"
+    },
+    {
+        "id":  "chucknorris_joke",
+        "name":  "Chuck Norris Jokes",
+        "category":  "fun",
+        "method":  "GET",
+        "url":  "https://api.chucknorris.io/jokes/random",
+        "auth":  "none",
+        "use_case":  "Random themed jokes"
+    },
+    {
+        "id":  "dnd5e_feature",
+        "name":  "DND 5e Feature",
+        "category":  "games",
+        "method":  "GET",
+        "url":  "https://www.dnd5eapi.co/api/features/{index}",
+        "auth":  "none",
+        "use_case":  "Dungeons and Dragons 5e reference"
+    },
+    {
+        "id":  "deckofcards_new",
+        "name":  "Deck of Cards New",
+        "category":  "games",
+        "method":  "GET",
+        "url":  "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count={deck_count}",
+        "auth":  "none",
+        "use_case":  "Create and shuffle virtual card deck"
+    },
+    {
+        "id":  "deckofcards_draw",
+        "name":  "Deck of Cards Draw",
+        "category":  "games",
+        "method":  "GET",
+        "url":  "https://deckofcardsapi.com/api/deck/{deck_id}/draw/?count={count}",
+        "auth":  "none",
+        "use_case":  "Draw cards from an existing deck"
+    },
+    {
+        "id":  "gamerpower_giveaways",
+        "name":  "GamerPower Giveaways",
+        "category":  "games",
+        "method":  "GET",
+        "url":  "https://www.gamerpower.com/api/giveaways?platform={platform}\u0026sort-by=popularity",
+        "auth":  "none",
+        "use_case":  "Free game and giveaway tracking"
+    },
+    {
+        "id":  "botw_compendium",
+        "name":  "BOTW Compendium",
+        "category":  "games",
+        "method":  "GET",
+        "url":  "https://botw-compendium.herokuapp.com/api/v2/entry/{entry}",
+        "auth":  "none",
+        "use_case":  "Zelda Breath of the Wild item/creature data"
+    },
+    {
+        "id":  "cocktaildb_search",
+        "name":  "CocktailDB Search",
+        "category":  "food",
+        "method":  "GET",
+        "url":  "https://www.thecocktaildb.com/api/json/v1/1/search.php?s={query}",
+        "auth":  "none",
+        "use_case":  "Cocktail recipes by name"
+    },
+    {
+        "id":  "boardgamegeek_search",
+        "name":  "BoardGameGeek Search",
+        "category":  "games",
+        "method":  "GET",
+        "url":  "https://boardgamegeek.com/xmlapi/search?search={query}",
+        "auth":  "none",
+        "use_case":  "Board game catalog search"
+    },
+    {
+        "id":  "cloudflare_trace_alt",
+        "name":  "Cloudflare Trace Alt",
+        "category":  "dev",
+        "method":  "GET",
+        "url":  "https://1.1.1.1/cdn-cgi/trace",
+        "auth":  "none",
+        "use_case":  "Quick client network diagnostics"
+    },
+    {
+        "id":  "apicagent_parse_ua",
+        "name":  "APIC Agent Parser",
+        "category":  "dev",
+        "method":  "GET",
+        "url":  "https://api.apicagent.com/?ua={user_agent}",
+        "auth":  "none",
+        "use_case":  "Parse browser, OS, and device from user agent"
+    },
+    {
+        "id":  "google_favicon",
+        "name":  "Google Favicon",
+        "category":  "dev",
+        "method":  "GET",
+        "url":  "https://www.google.com/s2/favicons?domain={domain}\u0026sz={size}",
+        "auth":  "none",
+        "use_case":  "Fetch favicon for a domain"
+    },
+    {
+        "id":  "goqr_create",
+        "name":  "goQR Create",
+        "category":  "utility",
+        "method":  "GET",
+        "url":  "https://api.qrserver.com/v1/create-qr-code/?data={text}\u0026size={size}",
+        "auth":  "none",
+        "use_case":  "Generate customizable QR codes"
+    },
+    {
+        "id":  "ziptastic_zip",
+        "name":  "Ziptastic ZIP",
+        "category":  "geo",
+        "method":  "GET",
+        "url":  "https://ziptasticapi.com/{zipcode}",
+        "auth":  "none",
+        "use_case":  "US ZIP code location lookup"
+    },
+    {
+        "id":  "brasilapi_holidays",
+        "name":  "BrasilAPI Holidays",
+        "category":  "government",
+        "method":  "GET",
+        "url":  "https://brasilapi.com.br/api/feriados/v1/{year}",
+        "auth":  "none",
+        "use_case":  "Brazil public holiday calendar"
+    },
+    {
+        "id":  "dawum_polls",
+        "name":  "Dawum Polls",
+        "category":  "government",
+        "method":  "GET",
+        "url":  "https://api.dawum.de/",
+        "auth":  "none",
+        "use_case":  "German election poll aggregation"
+    },
+    {
+        "id":  "federal_register_doc",
+        "name":  "Federal Register Document",
+        "category":  "government",
+        "method":  "GET",
+        "url":  "https://www.federalregister.gov/api/v1/documents/{document_number}",
+        "auth":  "none",
+        "use_case":  "US federal register document lookup"
+    },
+    {
+        "id":  "datausa_population",
+        "name":  "Data USA Population",
+        "category":  "government",
+        "method":  "GET",
+        "url":  "https://datausa.io/api/data?drilldowns=Nation\u0026measures=Population\u0026year={year}",
+        "auth":  "none",
+        "use_case":  "US population data query"
+    },
+    {
+        "id":  "worldbank_region",
+        "name":  "World Bank Regions",
+        "category":  "government",
+        "method":  "GET",
+        "url":  "https://api.worldbank.org/v2/region?format=json",
+        "auth":  "none",
+        "use_case":  "World Bank region metadata"
+    },
+    {
+        "id":  "makeup_products",
+        "name":  "Makeup API",
+        "category":  "health",
+        "method":  "GET",
+        "url":  "http://makeup-api.herokuapp.com/api/v1/products.json?brand={brand}",
+        "auth":  "none",
+        "use_case":  "Cosmetic products by brand"
+    },
+    {
+        "id":  "nppes_provider_search",
+        "name":  "NPPES Provider Search",
+        "category":  "health",
+        "method":  "GET",
+        "url":  "https://npiregistry.cms.hhs.gov/api/?version=2.1\u0026city={city}",
+        "auth":  "none",
+        "use_case":  "US healthcare provider registry search"
+    },
+    {
+        "id":  "kanye_quote",
+        "name":  "Kanye Quote",
+        "category":  "inspiration",
+        "method":  "GET",
+        "url":  "https://api.kanye.rest/",
+        "auth":  "none",
+        "use_case":  "Random short quote"
+    },
+    {
+        "id":  "breakingbad_quote",
+        "name":  "Breaking Bad Quotes",
+        "category":  "inspiration",
+        "method":  "GET",
+        "url":  "https://api.breakingbadquotes.xyz/v1/quotes",
+        "auth":  "none",
+        "use_case":  "Random Breaking Bad quotes"
+    },
+    {
+        "id":  "itunes_search",
+        "name":  "iTunes Search",
+        "category":  "music",
+        "method":  "GET",
+        "url":  "https://itunes.apple.com/search?term={query}",
+        "auth":  "none",
+        "use_case":  "Music and media search"
+    },
+    {
+        "id":  "musicbrainz_artist",
+        "name":  "MusicBrainz Artist",
+        "category":  "music",
+        "method":  "GET",
+        "url":  "https://musicbrainz.org/ws/2/artist/{mbid}?fmt=json",
+        "auth":  "none",
+        "use_case":  "Artist metadata by MusicBrainz ID"
+    },
+    {
+        "id":  "carbon_intensity_uk",
+        "name":  "Carbon Intensity UK",
+        "category":  "open-data",
+        "method":  "GET",
+        "url":  "https://api.carbonintensity.org.uk/intensity/date/{date}",
+        "auth":  "none",
+        "use_case":  "UK electricity carbon intensity"
+    },
+    {
+        "id":  "police_uk_street_crime",
+        "name":  "Police UK Street Crime",
+        "category":  "open-data",
+        "method":  "GET",
+        "url":  "https://data.police.uk/api/crimes-street/all-crime?lat={lat}\u0026lng={lon}\u0026date={date}",
+        "auth":  "none",
+        "use_case":  "Street crime records by location and month"
+    },
+    {
+        "id":  "nhtsa_vehicle_types",
+        "name":  "NHTSA Vehicle Types",
+        "category":  "open-data",
+        "method":  "GET",
+        "url":  "https://vpic.nhtsa.dot.gov/api/vehicles/GetVehicleTypesForMake/{make}?format=json",
+        "auth":  "none",
+        "use_case":  "Vehicle make and type reference data"
+    },
+    {
+        "id":  "wikimedia_pageviews",
+        "name":  "Wikimedia Pageviews",
+        "category":  "open-data",
+        "method":  "GET",
+        "url":  "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/all-agents/{title}/daily/{start}/{end}",
+        "auth":  "none",
+        "use_case":  "Wikipedia pageview analytics"
+    },
+    {
+        "id":  "arcsecond_activities",
+        "name":  "Arcsecond Activities",
+        "category":  "science",
+        "method":  "GET",
+        "url":  "https://api.arcsecond.io/activities/",
+        "auth":  "none",
+        "use_case":  "Astronomy observation activities"
+    },
+    {
+        "id":  "gbif_occurrence",
+        "name":  "GBIF Occurrence",
+        "category":  "science",
+        "method":  "GET",
+        "url":  "https://api.gbif.org/v1/occurrence/search?year={year_start},{year_end}\u0026limit=10",
+        "auth":  "none",
+        "use_case":  "Global biodiversity occurrence data"
+    },
+    {
+        "id":  "newton_math",
+        "name":  "Newton Math",
+        "category":  "science",
+        "method":  "GET",
+        "url":  "https://newton.now.sh/api/v2/{operation}/{expression}",
+        "auth":  "none",
+        "use_case":  "Math operations and symbolic solving"
+    },
+    {
+        "id":  "numbersapi_fact",
+        "name":  "Numbers API Fact",
+        "category":  "science",
+        "method":  "GET",
+        "url":  "http://numbersapi.com/{number}/{kind}",
+        "auth":  "none",
+        "use_case":  "Facts about numbers by category"
+    },
+    {
+        "id":  "vbb_transport_locations",
+        "name":  "VBB Transport Locations",
+        "category":  "transport",
+        "method":  "GET",
+        "url":  "https://v6.vbb.transport.rest/locations?query={query}",
+        "auth":  "none",
+        "use_case":  "Berlin and Brandenburg public transport location search"
+    },
+    {
+        "id":  "irail_vehicle",
+        "name":  "iRail Vehicle",
+        "category":  "transport",
+        "method":  "GET",
+        "url":  "https://api.irail.be/vehicle/?id={vehicle_id}\u0026format=json\u0026lang=en\u0026alerts=false",
+        "auth":  "none",
+        "use_case":  "Belgian rail vehicle stop and delay details"
+    },
+    {
+        "id":  "bacon_ipsum",
+        "name":  "Bacon Ipsum",
+        "category":  "test-data",
+        "method":  "GET",
+        "url":  "https://baconipsum.com/api/?type={type}\u0026paras={paras}",
+        "auth":  "none",
+        "use_case":  "Generate placeholder lorem ipsum text"
+    },
+    {
+        "id":  "reqres_users",
+        "name":  "Reqres Users",
+        "category":  "test-data",
+        "method":  "GET",
+        "url":  "https://reqres.in/api/users?page={page}",
+        "auth":  "none",
+        "use_case":  "Test REST responses and pagination"
+    },
+    {
+        "id":  "restful_api_objects",
+        "name":  "Restful API Objects",
+        "category":  "test-data",
+        "method":  "GET",
+        "url":  "https://api.restful-api.dev/objects",
+        "auth":  "none",
+        "use_case":  "Dummy object dataset for API testing"
+    },
+    {
+        "id":  "uuidtools_generate",
+        "name":  "UUID Tools Generate",
+        "category":  "test-data",
+        "method":  "GET",
+        "url":  "https://www.uuidtools.com/api/generate/v1/count/{count}",
+        "auth":  "none",
+        "use_case":  "Generate UUIDs for testing"
+    },
+    {
+        "id":  "archive_metadata",
+        "name":  "Archive.org Metadata",
+        "category":  "open-data",
+        "method":  "GET",
+        "url":  "https://archive.org/metadata/{identifier}",
+        "auth":  "none",
+        "use_case":  "Internet Archive item metadata"
+    },
+    {
+        "id":  "openlibrary_isbn",
+        "name":  "Open Library ISBN",
+        "category":  "open-data",
+        "method":  "GET",
+        "url":  "https://openlibrary.org/api/volumes/brief/isbn/{isbn}.json",
+        "auth":  "none",
+        "use_case":  "Book metadata lookup by ISBN"
+    },
+    {
+        "id":  "celestrak_gp",
+        "name":  "CelesTrak GP",
+        "category":  "science",
+        "method":  "GET",
+        "url":  "https://celestrak.org/NORAD/elements/gp.php?INTDES={intdes}\u0026FORMAT=JSON",
+        "auth":  "none",
+        "use_case":  "Satellite orbital element data"
+    },
+    {
+        "id":  "usgs_fdsn_query",
+        "name":  "USGS FDSN Query",
+        "category":  "science",
+        "method":  "GET",
+        "url":  "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson\u0026starttime={start}\u0026endtime={end}\u0026minmagnitude={minmag}",
+        "auth":  "none",
+        "use_case":  "Custom earthquake search by date and magnitude"
+    },
+    {
+        "id":  "sunrisesunset_io",
+        "name":  "SunriseSunset.io",
+        "category":  "science",
+        "method":  "GET",
+        "url":  "https://api.sunrisesunset.io/json?lat={lat}\u0026lng={lon}\u0026timezone={timezone}\u0026date={date}",
+        "auth":  "none",
+        "use_case":  "Sunrise and sunset values with timezone"
+    },
+    {
+        "id":  "arxiv_search",
+        "name":  "arXiv Search",
+        "category":  "science",
+        "method":  "GET",
+        "url":  "https://export.arxiv.org/api/query?search_query=all:{query}\u0026start=0\u0026max_results=5",
+        "auth":  "none",
+        "use_case":  "Research paper search"
+    },
+    {
+        "id":  "open_notify_astros_alt",
+        "name":  "Open Notify Astros",
+        "category":  "science",
+        "method":  "GET",
+        "url":  "http://api.open-notify.org/astros.json",
+        "auth":  "none",
+        "use_case":  "People currently in space"
+    },
+    {
+        "id":  "spacex_latest_launch",
+        "name":  "SpaceX Latest Launch",
+        "category":  "science",
+        "method":  "GET",
+        "url":  "https://api.spacexdata.com/v5/launches/latest",
+        "auth":  "none",
+        "use_case":  "Latest SpaceX launch data"
+    },
+    {
+        "id":  "spaceflight_news_latest",
+        "name":  "Spaceflight News Latest",
+        "category":  "science",
+        "method":  "GET",
+        "url":  "https://api.spaceflightnewsapi.net/v3/articles",
+        "auth":  "none",
+        "use_case":  "Space industry news feed"
+    },
+    {
+        "id":  "mbta_routes",
+        "name":  "MBTA Route Patterns",
+        "category":  "transport",
+        "method":  "GET",
+        "url":  "https://api-v3.mbta.com/route_patterns?filter[route]={route}\u0026include=representative_trip\u0026fields[trip]=headsign",
+        "auth":  "none",
+        "use_case":  "Boston transit route details"
+    },
+    {
+        "id":  "metro_lisboa_status",
+        "name":  "Metro Lisboa Status",
+        "category":  "transport",
+        "method":  "GET",
+        "url":  "https://app.metrolisboa.pt/status/getLinhas.php",
+        "auth":  "none",
+        "use_case":  "Lisbon metro line status"
+    },
+    {
+        "id":  "sg_weather_airtemp",
+        "name":  "SG Weather Air Temperature",
+        "category":  "weather",
+        "method":  "GET",
+        "url":  "https://api.data.gov.sg/v1/environment/air-temperature",
+        "auth":  "none",
+        "use_case":  "Singapore weather station readings"
+    },
+    {
+        "id":  "wttr_london",
+        "name":  "wttr.in London",
+        "category":  "weather",
+        "method":  "GET",
+        "url":  "https://wttr.in/London?format=3",
+        "auth":  "none",
+        "use_case":  "Compact weather summary"
+    },
+    {
+        "id":  "opengov_canada_package",
+        "name":  "Open Government Canada Package",
+        "category":  "open-data",
+        "method":  "GET",
+        "url":  "https://open.canada.ca/data/api/action/package_show?id={package_id}",
+        "auth":  "none",
+        "use_case":  "Canadian open data package details"
+    },
+    {
+        "id":  "nyc_open_data_record",
+        "name":  "NYC Open Data Record",
+        "category":  "open-data",
+        "method":  "GET",
+        "url":  "https://data.cityofnewyork.us/resource/{dataset}.json?{query_string}",
+        "auth":  "none",
+        "use_case":  "Query NYC open data datasets"
+    },
+    {
+        "id":  "open_data_dc_traffic",
+        "name":  "Open Data DC Traffic",
+        "category":  "open-data",
+        "method":  "GET",
+        "url":  "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Transportation_TrafficVolume_WebMercator/MapServer/171/query?where=1%3D1\u0026outFields=ROUTEID,FROMMEASURE,TOMEASURE,FROMDATE,TODATE\u0026outSR=4326\u0026f=json",
+        "auth":  "none",
+        "use_case":  "Washington DC traffic volume data"
+    },
+    {
+        "id":  "fipe_models",
+        "name":  "Fipe Models",
+        "category":  "open-data",
+        "method":  "GET",
+        "url":  "https://parallelum.com.br/fipe/api/v1/carros/marcas/{brand_id}/modelos",
+        "auth":  "none",
+        "use_case":  "Brazil vehicle brand and model catalog"
+    },
+    {
+        "id":  "house_stock_watcher",
+        "name":  "House Stock Watcher",
+        "category":  "open-data",
+        "method":  "GET",
+        "url":  "https://house-stock-watcher-data.s3-us-west-2.amazonaws.com/data/filemap.xml",
+        "auth":  "none",
+        "use_case":  "US Congress stock transaction file map"
+    },
+    {
+        "id":  "pm25_latest",
+        "name":  "PM2.5 Latest",
+        "category":  "open-data",
+        "method":  "GET",
+        "url":  "https://pm25.lass-net.org/API-1.0.0/project/airbox/latest/",
+        "auth":  "none",
+        "use_case":  "PM2.5 environmental monitoring"
+    },
+    {
+        "id":  "openwhyd_hot",
+        "name":  "OpenWhyd Hot",
+        "category":  "music",
+        "method":  "GET",
+        "url":  "https://openwhyd.org/hot/{genre}?format=json",
+        "auth":  "none",
+        "use_case":  "Music playlists from streaming platforms"
+    },
+    {
+        "id":  "binary_jazz_genre",
+        "name":  "Binary Jazz Genre",
+        "category":  "music",
+        "method":  "GET",
+        "url":  "https://binaryjazz.us/wp-json/genrenator/v1/genre/{count}",
+        "auth":  "none",
+        "use_case":  "Random genre generator"
+    },
+    {
+        "id":  "football_data_competitions",
+        "name":  "Football-Data Competitions",
+        "category":  "sports",
+        "method":  "GET",
+        "url":  "https://api.football-data.org/v4/competitions/",
+        "auth":  "none",
+        "use_case":  "Football competition listings"
+    },
+    {
+        "id":  "nhl_standings",
+        "name":  "NHL Standings",
+        "category":  "sports",
+        "method":  "GET",
+        "url":  "https://api-web.nhle.com/v1/standings-season",
+        "auth":  "none",
+        "use_case":  "NHL standings and season info"
+    },
+    {
+        "id":  "purgo_malum",
+        "name":  "PurgoMalum",
+        "category":  "language",
+        "method":  "GET",
+        "url":  "https://www.purgomalum.com/service/json?text={text}",
+        "auth":  "none",
+        "use_case":  "Profanity filtering and content checking"
+    },
+    {
+        "id":  "softwium_books",
+        "name":  "Softwium Books",
+        "category":  "test-data",
+        "method":  "GET",
+        "url":  "https://softwium.com/api/books",
+        "auth":  "none",
+        "use_case":  "Dummy book data for testing"
+    },
+    {
+        "id":  "ctext_headwords",
+        "name":  "Chinese Text Project",
+        "category":  "language",
+        "method":  "GET",
+        "url":  "https://api.ctext.org/getdictionaryheadwords",
+        "auth":  "none",
+        "use_case":  "Pre-modern Chinese text dictionary headwords"
+    }
+]
