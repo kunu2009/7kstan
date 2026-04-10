@@ -682,7 +682,7 @@ def health():
 
 @app.route("/mascot")
 def mascot():
-    return send_from_directory(BASE_DIR, "stan-mascot.jpeg")
+    return send_from_directory(app.static_folder, "stan-mascot.jpeg")
 
 
 @app.route("/api/settings", methods=["GET", "POST"])
